@@ -63,7 +63,11 @@
         >{{ .Title }}</a
     >
 </section>
-{{ end }}
+
+<!-- Add horizontal line between posts <!-->
+{{ if not (eq (add $index 1) (len $paginator.Pages)) }}
+<hr class="my-6 border-t border-gray-300 dark:border-gray-700" />
+{{ end }} {{ end }}
 
 <!-- Main Nav -->
 {{ if gt $paginator.TotalPages 1 }}
