@@ -1,0 +1,2 @@
+#! /usr/bin/env bash
+hugo && surge public hlud6646.surge.sh

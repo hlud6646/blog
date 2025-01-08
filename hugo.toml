@@ -1,0 +1,32 @@
+baseURL = 'https://hlud6646.surge.sh/'
+languageCode = 'en-us'
+title = 'Stories and Cheat-Sheets'
+theme = 'paper'
+
+[markup]
+    [markup.goldmark]
+      renderer.unsafe = true
+
+
+[params]
+
+    github = 'hlud6646'    
+    linkedin = 'hugoludemann'
+
+    name = 'Stories and Cheat-Sheets'
+    bio = """This page is a portfolio/blog/reference of things that I have learned at uni and at home.
+    Most are to do with maths and computers, in particular Haskell and data-science tools."""
+
+
+[menu]
+
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 10
+ [[menu.main]]
+   identifier = "contact"
+   name = "Contact"
+   url = "/contact/"
+   weight = 10

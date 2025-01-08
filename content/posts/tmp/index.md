@@ -1,0 +1,1 @@
+/home/erg/asd/bayse/notebooks/QuapProportion/index.md

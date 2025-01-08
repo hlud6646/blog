@@ -1,0 +1,13 @@
+<script type=module>
+	import {Chessboard} from "https://cdn.jsdelivr.net/npm/cm-chessboard@5.2.4/src/cm-chessboard/Chessboard.min.js"
+
+	new Chessboard(
+		document.getElementById("board{{ index .Params 1  }}"),
+		{position: {{ index .Params 0 }},
+		 sprite: {url: "/images/chessboard-sprite.svg"}
+		})
+</script>
+
+<div class="chessboardwrapper" >
+	<div id="board{{ index .Params 1 }}"></div>
+</div>
