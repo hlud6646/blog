@@ -44,6 +44,8 @@
     </div>
     {{ end }}
 </div>
+<hr class="my-6 border-t border-gray-300 dark:border-gray-700" />
+
 {{ end }}<!---->
 
 {{ end }}
@@ -58,7 +60,7 @@
     <time class="text-xs antialiased opacity-60"
         >{{ .Date | time.Format ":date_medium" }}</time
     >
-    <div class="text-xs">{{ .Content | truncate 300 }}</div>
+    <div>{{ .Content | truncate 300 }}</div>
     <a class="absolute inset-0 text-[0]" href="{{ .Permalink }}"
         >{{ .Title }}</a
     >
