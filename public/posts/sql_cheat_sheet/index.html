@@ -1,0 +1,526 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="en-us"
+  dir="ltr"
+>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=36077&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    
+    <title>SQL Cheat Sheet - Stories and Cheat-Sheets</title>
+
+    
+    <meta name="theme-color" />
+
+    
+    
+    
+    
+    <meta name="description" content="This page contains a small collection of useful references relating to SQL databases.
+Some are to do with administration (creating databases etc) and some to do with complicated
+queries (e.g. finding the median value in a result set).
+New Project
+For a new project, consider creating a new user.
+Postgresql
+
+Step into psql as the postgres user: $ sudo -u  postgres psql
+# create user madonna with encrypted password bigsecret;
+# create database popsongs;
+# grant all privileges on database popsongs to madonna;
+# alter database popsongs owner to madonna;
+
+MariaDB
+
+Check that mariadb is installed and running: $ mariadb --version and systemctl status mariadb
+Step into mariadb console as root: $ sudo mysql -u root;
+# create user &#39;madonna&#39;@localhost identified by &#39;bigsecret&#39;;
+# create database popsongs;
+# grant all privileges on popsongs.* to madonna@localhost;
+# flush privileges;
+# show grants for madonna;
+
+Inspections
+Some common inspections on a db server." />
+    <meta name="author" content="Stories and Cheat-Sheets" />
+    
+
+    
+    
+    
+    
+    
+    
+    <link rel="preload stylesheet" as="style" href="http://localhost:36077/main.min.css" />
+
+    
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/cm-chessboard@5.2.4/assets/styles/cm-chessboard.css"
+    />
+
+    
+    
+    
+    
+    
+    <link rel="preload" as="image" href="http://localhost:36077/theme.png" />
+
+    
+    
+    
+    
+    
+
+    
+    
+    <link rel="preload" as="image" href="http://localhost:36077/github.svg" />
+    
+    <link rel="preload" as="image" href="http://localhost:36077/linkedin.svg" />
+    
+    
+
+    
+    
+    <script
+        defer
+        src="http://localhost:36077/highlight.min.js"
+        onload="hljs.initHighlightingOnLoad();"
+    ></script>
+    
+
+    
+    
+    
+    
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css"
+  integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI"
+  crossorigin="anonymous"
+/>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js"
+  integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t"
+  crossorigin="anonymous"
+></script>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js"
+  integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+  crossorigin="anonymous"
+></script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () =>
+    renderMathInElement(document.body, {
+      
+      
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+      
+      throwOnError: false,
+    }),
+  );
+</script>
+
+    
+    
+    
+
+    
+    <link
+        rel="icon"
+        href="http://localhost:36077/favicon.ico"
+    />
+    <link
+        rel="apple-touch-icon"
+        href="http://localhost:36077/apple-touch-icon.png"
+    />
+
+    
+    <meta name="generator" content="Hugo 0.139.4">
+
+    
+    
+    
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-[--w] px-8 lg:justify-center">
+    <div class="relative z-50 ltr:mr-auto rtl:ml-auto flex items-center">
+        <a
+            class="-translate-y-[1px] text-2xl font-medium"
+            href="http://localhost:36077/"
+            >Stories and Cheat-Sheets</a
+        >
+        
+        
+    </div>
+
+    <div
+        class="btn-menu relative z-50 ltr:-mr-8 rtl:-ml-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+        role="button"
+        aria-label="Menu"
+    ></div>
+
+    
+
+    <script>
+        
+        const htmlClass = document.documentElement.classList;
+        setTimeout(() => {
+            htmlClass.remove("not-ready");
+        }, 10);
+
+        
+        const btnMenu = document.querySelector(".btn-menu");
+        btnMenu.addEventListener("click", () => {
+            htmlClass.toggle("open");
+        });
+
+        
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        const lightBg = "#faf8f1".replace(/"/g, "");
+        const setDark = (isDark) => {
+            metaTheme.setAttribute("content", isDark ? "#000" : lightBg);
+            htmlClass[isDark ? "add" : "remove"]("dark");
+            localStorage.setItem("dark", isDark);
+        };
+
+        
+        const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+        if (htmlClass.contains("dark")) {
+            setDark(true);
+        } else {
+            const darkVal = localStorage.getItem("dark");
+            setDark(darkVal ? darkVal === "true" : darkScheme.matches);
+        }
+
+        
+        darkScheme.addEventListener("change", (event) => {
+            setDark(event.matches);
+        });
+
+        
+        const btnDark = document.querySelector(".btn-dark");
+        btnDark.addEventListener("click", () => {
+            setDark(localStorage.getItem("dark") !== "true");
+        });
+    </script>
+
+    <div
+        class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+    >
+        
+        
+        <nav
+            class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-10 rtl:space-x-reverse"
+        >
+            
+            <a
+                class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+                href="/about/"
+                >About</a
+            >
+            
+            <a
+                class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+                href="/contact/"
+                >Contact</a
+            >
+            
+        </nav>
+        
+
+        
+        <nav
+            class="mt-12 flex justify-center space-x-10 rtl:space-x-reverse dark:invert ltr:lg:ml-14 rtl:lg:mr-14 lg:mt-0 lg:items-center"
+        >
+            
+            <a
+                class="h-7 w-7 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+                style="--url: url(./github.svg)"
+                href="https://github.com/hlud6646"
+                target="_blank"
+                rel="me"
+            >
+                github
+            </a>
+            
+            <a
+                class="h-7 w-7 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+                style="--url: url(./linkedin.svg)"
+                href="https://linkedin.com/in/hugoludemann"
+                target="_blank"
+                rel="me"
+            >
+                linkedin
+            </a>
+            
+        </nav>
+        
+    </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100vh-9rem)] max-w-[--w] px-8 pb-16 pt-14 dark:prose-invert"
+    >
+      
+
+<article>
+    <header class="mb-14">
+        <h1 class="!my-0 pb-2.5">SQL Cheat Sheet</h1>
+
+        
+        <div class="text-xs antialiased opacity-60">
+            
+            <time>Oct 1, 2024</time>
+            
+            
+            
+            
+        </div>
+        
+    </header>
+
+    
+    
+
+    <section><p>This page contains a small collection of useful references relating to SQL databases.
+Some are to do with administration (creating databases etc) and some to do with complicated
+queries (e.g. finding the median value in a result set).</p>
+<h2 id="new-project">New Project</h2>
+<p>For a new project, consider creating a new user.</p>
+<h3 id="postgresql">Postgresql</h3>
+<ul>
+<li>Step into <code>psql</code> as the postgres user: <code>$ sudo -u  postgres psql</code></li>
+<li><code># create user madonna with encrypted password bigsecret;</code></li>
+<li><code># create database popsongs;</code></li>
+<li><code># grant all privileges on database popsongs to madonna;</code></li>
+<li><code># alter database popsongs owner to madonna;</code></li>
+</ul>
+<h3 id="mariadb">MariaDB</h3>
+<ul>
+<li>Check that mariadb is installed and running: <code>$ mariadb --version</code> and <code>systemctl status mariadb</code></li>
+<li>Step into <code>mariadb</code> console as root: <code>$ sudo mysql -u root;</code></li>
+<li><code># create user 'madonna'@localhost identified by 'bigsecret';</code></li>
+<li><code># create database popsongs;</code></li>
+<li><code># grant all privileges on popsongs.* to madonna@localhost;</code></li>
+<li><code># flush privileges;</code></li>
+<li><code># show grants for madonna;</code></li>
+</ul>
+<h2 id="inspections">Inspections</h2>
+<p>Some common inspections on a db server.</p>
+<h3 id="mariadb-1">Mariadb</h3>
+<ul>
+<li>To see all users on a database query one of the system tables: <code># select user from mysql.user;</code></li>
+<li>To see all the databases use the simple <code># show databases;</code></li>
+</ul>
+<h3 id="misc">Misc</h3>
+<h4 id="median">Median</h4>
+<p>This has been added to mariadb, but probably isn&rsquo;t available in all other dialects.
+Seems odd, since the median is a common and useful summary statistic.</p>
+<p>Anyway suppose you have table of weather stations identified by latitude and longitude:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">or</span> <span style="color:#66d9ef">replace</span> <span style="color:#66d9ef">table</span> station
+</span></span><span style="display:flex;"><span>(
+</span></span><span style="display:flex;"><span>    id  int auto_increment <span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span>,
+</span></span><span style="display:flex;"><span>    lat float,
+</span></span><span style="display:flex;"><span>    lon float
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> station (lat, lon)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">values</span> (<span style="color:#ae81ff">40</span>.<span style="color:#ae81ff">7128</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">74</span>.<span style="color:#ae81ff">0060</span>),
+</span></span><span style="display:flex;"><span>       (<span style="color:#ae81ff">41</span>.<span style="color:#ae81ff">8781</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">87</span>.<span style="color:#ae81ff">6298</span>),
+</span></span><span style="display:flex;"><span>       (<span style="color:#ae81ff">39</span>.<span style="color:#ae81ff">9523</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">75</span>.<span style="color:#ae81ff">1631</span>),
+</span></span><span style="display:flex;"><span>       (<span style="color:#ae81ff">37</span>.<span style="color:#ae81ff">7749</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">122</span>.<span style="color:#ae81ff">4194</span>),
+</span></span><span style="display:flex;"><span>       (<span style="color:#ae81ff">33</span>.<span style="color:#ae81ff">2951</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">96</span>.<span style="color:#ae81ff">9836</span>),
+</span></span><span style="display:flex;"><span>       (<span style="color:#ae81ff">33</span>.<span style="color:#ae81ff">5443</span>, <span style="color:#ae81ff">151</span>.<span style="color:#ae81ff">3069</span>);
+</span></span></code></pre></div><p>and you are looking for the median latitude.</p>
+<p>Firstly count the rows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#66d9ef">count</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">as</span> <span style="color:#f92672">`</span>value<span style="color:#f92672">`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> station;
+</span></span></code></pre></div><p>&lsquo;value&rsquo; might seem a bad name for this quantity, but this calculation will
+be used in a subquery, and the whole subquery aliased as &rsquo;total_rows&rsquo;.</p>
+<p>Next you need to query the table for latitude, in ascending order,
+with an extra column that records the position in the sequence.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#f92672">@</span>row_number :<span style="color:#f92672">=</span> <span style="color:#f92672">@</span>row_number <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">as</span> <span style="color:#f92672">`</span>row_number<span style="color:#f92672">`</span>, lat
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> station,
+</span></span><span style="display:flex;"><span>     (<span style="color:#66d9ef">select</span> <span style="color:#f92672">@</span>row_number :<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">as</span> r
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">order</span> <span style="color:#66d9ef">by</span> lat;
+</span></span></code></pre></div><p>returns</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">row_number</th>
+          <th style="text-align: left">lat</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">33.2951</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left">33.5443</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">37.7749</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">39.9523</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">5</td>
+          <td style="text-align: left">40.7128</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">6</td>
+          <td style="text-align: left">41.8781</td>
+      </tr>
+  </tbody>
+</table>
+<p>If you have an even number of rows, you need the middle two.
+If you have an odd number of rows, you just need the middle one.
+Both cases are captures by the predicates
+$$rowNumber \geq totalRows / 2$$ and
+$$rowNumber \leq totalRows/2 + 1$$.</p>
+<p>Joining these pieces together you get the following query:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> all_rows.row_number, all_rows.lat
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> (<span style="color:#66d9ef">select</span> <span style="color:#f92672">@</span>row_number :<span style="color:#f92672">=</span> <span style="color:#f92672">@</span>row_number <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">as</span> <span style="color:#f92672">`</span>row_number<span style="color:#f92672">`</span>, station.<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">from</span> station,
+</span></span><span style="display:flex;"><span>           (<span style="color:#66d9ef">select</span> <span style="color:#f92672">@</span>row_number :<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">as</span> r
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">order</span> <span style="color:#66d9ef">by</span> lat) <span style="color:#66d9ef">as</span> all_rows,
+</span></span><span style="display:flex;"><span>     (<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">count</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">as</span> <span style="color:#f92672">`</span>value<span style="color:#f92672">`</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">from</span> station) <span style="color:#66d9ef">as</span> total_rows
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> all_rows.row_number <span style="color:#f92672">&gt;=</span> total_rows.value <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">and</span> all_rows.row_number <span style="color:#f92672">&lt;=</span> total_rows.value <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>;
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">row_number</th>
+          <th style="text-align: left">lat</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">37.7749</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">39.9523</td>
+      </tr>
+  </tbody>
+</table>
+<p>and you only need to apply <code>avg</code> in the top line to compute the actual median.
+If the table had an odd number of rows, the output above would be a single line
+and <code>avg</code> would leave the value unchanged.</p>
+</section>
+
+    
+    
+    
+    
+    <nav
+        class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg !leading-[1.2] *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+    >
+        
+        <a class="ltr:pr-3 rtl:pl-3" href="http://localhost:36077/posts/vectorised/"
+            ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span
+            ><span>Vectorised Operations</span></a
+        >
+        
+        
+        <a
+            class="ltr:ml-auto rtl:mr-auto justify-end pl-3"
+            href="http://localhost:36077/posts/building_grep/"
+            ><span>Rebuilding Grep</span
+            ><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+        >
+        
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+
+    
+
+
+    
+</article>
+
+
+    </main>
+
+    <footer
+    class="mx-auto flex h-[4.5rem] max-w-[--w] items-center px-8 text-xs uppercase tracking-wider opacity-60"
+>
+    <div class="mr-auto">
+         &copy; 2025
+        <a class="link" href="http://localhost:36077/">Stories and Cheat-Sheets</a>
+        
+    </div>
+    
+</footer>
+
+  </body>
+</html>

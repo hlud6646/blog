@@ -1,0 +1,506 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="en-us"
+  dir="ltr"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    
+    <title>Statistics in Julia - Stories and Cheat-Sheets</title>
+
+    
+    <meta name="theme-color" />
+
+    
+    
+    
+    
+    <meta name="description" content="I took a course on multivariate statistics and the instructor was very committed to the idea
+of demonstrating the quality of any claimed asymptotic results by running simulations. He did
+everything in R which I do not like and I took the opportunity to see what Julia was like for
+this kind of work.
+The demonstration below looks at the test statistic for a comparison of multivariate normal
+sample means, if you have two groups and are not willing to assume that they have the same
+underlying covariance structure.  In this case both the test statistic (Hotelling&rsquo;s $T^2$)
+and one of the distribution parameters (the degrees of freedom $\nu$ in the $F$ distribution)
+depend on the observed data." />
+    <meta name="author" content="Stories and Cheat-Sheets" />
+    
+
+    
+    
+    
+    
+    
+    
+    <link rel="preload stylesheet" as="style" href="https://hlud6646.surge.sh/main.min.css" />
+
+    
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/cm-chessboard@5.2.4/assets/styles/cm-chessboard.css"
+    />
+
+    
+    
+    
+    
+    
+    <link rel="preload" as="image" href="https://hlud6646.surge.sh/theme.png" />
+
+    
+    
+    
+    
+    
+
+    
+    
+    <link rel="preload" as="image" href="https://hlud6646.surge.sh/github.svg" />
+    
+    <link rel="preload" as="image" href="https://hlud6646.surge.sh/linkedin.svg" />
+    
+    
+
+    
+    
+    <script
+        defer
+        src="https://hlud6646.surge.sh/highlight.min.js"
+        onload="hljs.initHighlightingOnLoad();"
+    ></script>
+    
+
+    
+    
+    
+    
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css"
+  integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI"
+  crossorigin="anonymous"
+/>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js"
+  integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t"
+  crossorigin="anonymous"
+></script>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js"
+  integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+  crossorigin="anonymous"
+></script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () =>
+    renderMathInElement(document.body, {
+      
+      
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+      
+      throwOnError: false,
+    }),
+  );
+</script>
+
+    
+    
+    
+
+    
+    <link
+        rel="icon"
+        href="https://hlud6646.surge.sh/favicon.ico"
+    />
+    <link
+        rel="apple-touch-icon"
+        href="https://hlud6646.surge.sh/apple-touch-icon.png"
+    />
+
+    
+    <meta name="generator" content="Hugo 0.139.4">
+
+    
+    
+    
+    
+    
+    
+  <meta itemprop="name" content="Statistics in Julia">
+  <meta itemprop="description" content="I took a course on multivariate statistics and the instructor was very committed to the idea of demonstrating the quality of any claimed asymptotic results by running simulations. He did everything in R which I do not like and I took the opportunity to see what Julia was like for this kind of work.
+The demonstration below looks at the test statistic for a comparison of multivariate normal sample means, if you have two groups and are not willing to assume that they have the same underlying covariance structure. In this case both the test statistic (Hotelling’s $T^2$) and one of the distribution parameters (the degrees of freedom $\nu$ in the $F$ distribution) depend on the observed data.">
+  <meta itemprop="datePublished" content="2023-08-28T21:55:47+10:00">
+  <meta itemprop="dateModified" content="2023-08-28T21:55:47+10:00">
+  <meta itemprop="wordCount" content="579">
+    
+    <meta property="og:url" content="https://hlud6646.surge.sh/posts/stats_julia/">
+  <meta property="og:site_name" content="Stories and Cheat-Sheets">
+  <meta property="og:title" content="Statistics in Julia">
+  <meta property="og:description" content="I took a course on multivariate statistics and the instructor was very committed to the idea of demonstrating the quality of any claimed asymptotic results by running simulations. He did everything in R which I do not like and I took the opportunity to see what Julia was like for this kind of work.
+The demonstration below looks at the test statistic for a comparison of multivariate normal sample means, if you have two groups and are not willing to assume that they have the same underlying covariance structure. In this case both the test statistic (Hotelling’s $T^2$) and one of the distribution parameters (the degrees of freedom $\nu$ in the $F$ distribution) depend on the observed data.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-08-28T21:55:47+10:00">
+    <meta property="article:modified_time" content="2023-08-28T21:55:47+10:00">
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Statistics in Julia">
+  <meta name="twitter:description" content="I took a course on multivariate statistics and the instructor was very committed to the idea of demonstrating the quality of any claimed asymptotic results by running simulations. He did everything in R which I do not like and I took the opportunity to see what Julia was like for this kind of work.
+The demonstration below looks at the test statistic for a comparison of multivariate normal sample means, if you have two groups and are not willing to assume that they have the same underlying covariance structure. In this case both the test statistic (Hotelling’s $T^2$) and one of the distribution parameters (the degrees of freedom $\nu$ in the $F$ distribution) depend on the observed data.">
+
+    
+    
+
+    
+    <link rel="canonical" href="https://hlud6646.surge.sh/posts/stats_julia/" />
+    
+    
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-[--w] px-8 lg:justify-center">
+    <div class="relative z-50 ltr:mr-auto rtl:ml-auto flex items-center">
+        <a
+            class="-translate-y-[1px] text-2xl font-medium"
+            href="https://hlud6646.surge.sh/"
+            >Stories and Cheat-Sheets</a
+        >
+        
+        
+    </div>
+
+    <div
+        class="btn-menu relative z-50 ltr:-mr-8 rtl:-ml-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+        role="button"
+        aria-label="Menu"
+    ></div>
+
+    
+
+    <script>
+        
+        const htmlClass = document.documentElement.classList;
+        setTimeout(() => {
+            htmlClass.remove("not-ready");
+        }, 10);
+
+        
+        const btnMenu = document.querySelector(".btn-menu");
+        btnMenu.addEventListener("click", () => {
+            htmlClass.toggle("open");
+        });
+
+        
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        const lightBg = "#faf8f1".replace(/"/g, "");
+        const setDark = (isDark) => {
+            metaTheme.setAttribute("content", isDark ? "#000" : lightBg);
+            htmlClass[isDark ? "add" : "remove"]("dark");
+            localStorage.setItem("dark", isDark);
+        };
+
+        
+        const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+        if (htmlClass.contains("dark")) {
+            setDark(true);
+        } else {
+            const darkVal = localStorage.getItem("dark");
+            setDark(darkVal ? darkVal === "true" : darkScheme.matches);
+        }
+
+        
+        darkScheme.addEventListener("change", (event) => {
+            setDark(event.matches);
+        });
+
+        
+        const btnDark = document.querySelector(".btn-dark");
+        btnDark.addEventListener("click", () => {
+            setDark(localStorage.getItem("dark") !== "true");
+        });
+    </script>
+
+    <div
+        class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+    >
+        
+        
+        <nav
+            class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-10 rtl:space-x-reverse"
+        >
+            
+            <a
+                class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+                href="/about/"
+                >About</a
+            >
+            
+            <a
+                class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+                href="/contact/"
+                >Contact</a
+            >
+            
+        </nav>
+        
+
+        
+        <nav
+            class="mt-12 flex justify-center space-x-10 rtl:space-x-reverse dark:invert ltr:lg:ml-14 rtl:lg:mr-14 lg:mt-0 lg:items-center"
+        >
+            
+            <a
+                class="h-7 w-7 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+                style="--url: url(./github.svg)"
+                href="https://github.com/hlud6646"
+                target="_blank"
+                rel="me"
+            >
+                github
+            </a>
+            
+            <a
+                class="h-7 w-7 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+                style="--url: url(./linkedin.svg)"
+                href="https://linkedin.com/in/hugoludemann"
+                target="_blank"
+                rel="me"
+            >
+                linkedin
+            </a>
+            
+        </nav>
+        
+    </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100vh-9rem)] max-w-[--w] px-8 pb-16 pt-14 dark:prose-invert"
+    >
+      
+
+<article>
+    <header class="mb-14">
+        <h1 class="!my-0 pb-2.5">Statistics in Julia</h1>
+
+        
+        <div class="text-xs antialiased opacity-60">
+            
+            <time>Aug 28, 2023</time>
+            
+            
+            
+            
+        </div>
+        
+    </header>
+
+    
+    
+
+    <section><p>I took a course on multivariate statistics and the instructor was very committed to the idea
+of demonstrating the quality of any claimed asymptotic results by running simulations. He did
+everything in R which I do not like and I took the opportunity to see what Julia was like for
+this kind of work.</p>
+<p>The demonstration below looks at the test statistic for a comparison of multivariate normal
+sample means, if you have two groups and are not willing to assume that they have the same
+underlying covariance structure.  In this case both the test statistic (Hotelling&rsquo;s $T^2$)
+and one of the distribution parameters (the degrees of freedom $\nu$ in the $F$ distribution)
+depend on the observed data.</p>
+<p>Start with imports, a convenient function for a random positive-definite matrix and a container
+of all the experimental architecture.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Julia" data-lang="Julia"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> Distributions, Parameters, Statistics, Random
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> LinearAlgebra, Plots, LaTeXStrings, ProgressMeter
+</span></span><span style="display:flex;"><span>Random<span style="color:#f92672">.</span>seed!(<span style="color:#ae81ff">420</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;Generate random positive definite matrix of given dimension.&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> Σ(p)
+</span></span><span style="display:flex;"><span>    m <span style="color:#f92672">=</span> qr(reshape(rand(Normal(), p<span style="color:#f92672">^</span><span style="color:#ae81ff">2</span>), (p, p)))<span style="color:#f92672">.</span>Q
+</span></span><span style="display:flex;"><span>    Hermitian(m<span style="color:#f92672">&#39;</span> <span style="color:#f92672">*</span> (m <span style="color:#f92672">.*</span> reverse(collect(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>p))))
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;Struct of parameters which define the experiment architecture.&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@with_kw</span> <span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">Params</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Sample dimensions.</span>
+</span></span><span style="display:flex;"><span>    p <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; nx <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>; ny <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># True means and variances.</span>
+</span></span><span style="display:flex;"><span>    μx <span style="color:#f92672">=</span> [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>]; μy <span style="color:#f92672">=</span> [<span style="color:#ae81ff">4.1</span>, pi, <span style="color:#ae81ff">1.9</span>]
+</span></span><span style="display:flex;"><span>    Σx <span style="color:#f92672">=</span> Σ(p); Σy <span style="color:#f92672">=</span> Σ(p)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>;
+</span></span></code></pre></div><p>Then calculate the test statistic and degrees of freedom given observed data. The math
+is a bit involved but that&rsquo;s not the main thing here.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Julia" data-lang="Julia"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> Hotelling(x, y, Sx, Sy, nx, ny) 
+</span></span><span style="display:flex;"><span>    xbar <span style="color:#f92672">=</span> mean(x, dims<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">&#39;</span>; ybar <span style="color:#f92672">=</span> mean(y, dims<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">&#39;</span>
+</span></span><span style="display:flex;"><span>    ((xbar <span style="color:#f92672">-</span> ybar)<span style="color:#f92672">&#39;</span> <span style="color:#f92672">*</span> inv(Sx<span style="color:#f92672">/</span>nx <span style="color:#f92672">+</span> Sy<span style="color:#f92672">/</span>ny) <span style="color:#f92672">*</span> (xbar <span style="color:#f92672">-</span> ybar))[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> ν(Sx, Sy, nx, ny)
+</span></span><span style="display:flex;"><span>    p <span style="color:#f92672">=</span> size(Sx)[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>    a(S, n) <span style="color:#f92672">=</span>  <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>n <span style="color:#f92672">*</span> S <span style="color:#f92672">*</span> inv(Sx<span style="color:#f92672">/</span>nx <span style="color:#f92672">+</span> Sy<span style="color:#f92672">/</span>ny)
+</span></span><span style="display:flex;"><span>    ax <span style="color:#f92672">=</span> a(Sx, nx); ay <span style="color:#f92672">=</span> a(Sy, ny)
+</span></span><span style="display:flex;"><span>    b(a) <span style="color:#f92672">=</span> tr(a<span style="color:#f92672">^</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> tr(a)<span style="color:#f92672">^</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>    (p <span style="color:#f92672">+</span> p<span style="color:#f92672">^</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">/</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> nx <span style="color:#f92672">*</span> b(ax) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> ny <span style="color:#f92672">*</span> b(ay))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>;
+</span></span></code></pre></div><p>This is the main function, which draws two random samples in line with the given configuration
+parameter and then returns the test statistic and degrees of freedom.  This will be run many times.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Julia" data-lang="Julia"><span style="display:flex;"><span><span style="color:#e6db74">&#34;Run one trial, that is generate an F statistic and ν  from the experimental design in P. 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">The claim is that T2 is distributed as νp/(ν - p + 1)F(p, ν - p + 1).&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> trial(P<span style="color:#f92672">::</span><span style="color:#66d9ef">Params</span>)
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> rand(MvNormal(P<span style="color:#f92672">.</span>μx, P<span style="color:#f92672">.</span>Σx), P<span style="color:#f92672">.</span>nx)<span style="color:#f92672">&#39;</span>
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> rand(MvNormal(P<span style="color:#f92672">.</span>μy, P<span style="color:#f92672">.</span>Σy), P<span style="color:#f92672">.</span>ny)<span style="color:#f92672">&#39;</span>
+</span></span><span style="display:flex;"><span>    Sx <span style="color:#f92672">=</span> cov(x); Sy <span style="color:#f92672">=</span> cov(y)
+</span></span><span style="display:flex;"><span>    T2 <span style="color:#f92672">=</span> Hotelling(x, y, Sx, Sy, P<span style="color:#f92672">.</span>nx, P<span style="color:#f92672">.</span>ny)
+</span></span><span style="display:flex;"><span>    nu <span style="color:#f92672">=</span> ν(Sx, Sy, P<span style="color:#f92672">.</span>nx, P<span style="color:#f92672">.</span>ny)
+</span></span><span style="display:flex;"><span>    F <span style="color:#f92672">=</span> (nu <span style="color:#f92672">-</span> P<span style="color:#f92672">.</span>p <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> (nu <span style="color:#f92672">*</span> P<span style="color:#f92672">.</span>p) <span style="color:#f92672">*</span> T2
+</span></span><span style="display:flex;"><span>    [F, nu]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>;
+</span></span></code></pre></div><p>We just collect the outputs from many calls of the <code>trial</code> function above and plot them.
+Some of the Julia code feels clunky since I&rsquo;m fairly new to this language.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Julia" data-lang="Julia"><span style="display:flex;"><span>P <span style="color:#f92672">=</span> Params();
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> <span style="color:#a6e22e">@showprogress</span> [trial(P) <span style="color:#66d9ef">for</span> _ <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span><span style="color:#f92672">^</span><span style="color:#ae81ff">6</span>]
+</span></span><span style="display:flex;"><span>f <span style="color:#f92672">=</span> [first(x) <span style="color:#66d9ef">for</span> x <span style="color:#66d9ef">in</span> data];
+</span></span><span style="display:flex;"><span>nu <span style="color:#f92672">=</span> [last(x) <span style="color:#66d9ef">for</span> x <span style="color:#66d9ef">in</span> data];
+</span></span><span style="display:flex;"><span>histogram2d(nu, f, title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;F vs. ν&#34;</span>, xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ν&#34;</span>, ylabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;F&#34;</span>, ylims<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">25</span>))
+</span></span></code></pre></div><!-- I have no idea why inserting an html style comment here makes the images display but there you go :/ --> 
+<!-- ![hello there](/julia-stats/images/hist.png) -->
+<figure><img src="/posts/stats_julia/images/hist.png"
+    alt="2d Histogram of $T^2$ and $\nu$." width="100%"><figcaption>
+      <p>2d Histogram of $T^2$ and $\nu$.</p>
+    </figcaption>
+</figure>
+
+<p>We can take a few vertical slices from the plot above and compare them to the
+approximating distribution:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Julia" data-lang="Julia"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> vis(νbar, legend<span style="color:#f92672">=</span>false)
+</span></span><span style="display:flex;"><span>    histogram(
+</span></span><span style="display:flex;"><span>        f[νbar <span style="color:#f92672">-</span> <span style="color:#ae81ff">.5</span> <span style="color:#f92672">.&lt;</span> nu <span style="color:#f92672">.&lt;</span> νbar <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>],	  
+</span></span><span style="display:flex;"><span>        normalize<span style="color:#f92672">=</span><span style="color:#e6db74">:true</span>, 
+</span></span><span style="display:flex;"><span>        label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Empirical&#34;</span>,
+</span></span><span style="display:flex;"><span>        xlims<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>),
+</span></span><span style="display:flex;"><span>        title<span style="color:#f92672">=</span><span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;$</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">u =$&#34;</span> <span style="color:#f92672">*</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">$νbar</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>        legend_position<span style="color:#f92672">=</span>legend)
+</span></span><span style="display:flex;"><span>    d <span style="color:#f92672">=</span> FDist(P<span style="color:#f92672">.</span>p, νbar <span style="color:#f92672">-</span> P<span style="color:#f92672">.</span>p <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>); 
+</span></span><span style="display:flex;"><span>    plot!(x <span style="color:#f92672">-&gt;</span> pdf<span style="color:#f92672">.</span>(d, x), lw<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Approximate&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> plot(vis(<span style="color:#ae81ff">10</span>), vis(<span style="color:#ae81ff">14</span>, true), vis(<span style="color:#ae81ff">18</span>), 
+</span></span><span style="display:flex;"><span>plot_title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Approximate Distribution of Hotelling&#39;s &#34;</span> <span style="color:#f92672">*</span> <span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;T^2&#34;</span>, 
+</span></span><span style="display:flex;"><span>layout<span style="color:#f92672">=</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>size<span style="color:#f92672">=</span>(<span style="color:#ae81ff">900</span>, <span style="color:#ae81ff">600</span>))
+</span></span></code></pre></div><figure><img src="/posts/stats_julia/images/hist2.png"
+    alt="True vs. approximate distribution of test statistic." width="100%"><figcaption>
+      <p>True vs. approximate distribution of test statistic.</p>
+    </figcaption>
+</figure>
+
+</section>
+
+    
+    
+    
+    
+    <nav
+        class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg !leading-[1.2] *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+    >
+        
+        <a class="ltr:pr-3 rtl:pl-3" href="https://hlud6646.surge.sh/posts/quapproportion/"
+            ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span
+            ><span>Quadratic Approximation for a Proportion</span></a
+        >
+        
+        
+        <a
+            class="ltr:ml-auto rtl:mr-auto justify-end pl-3"
+            href="https://hlud6646.surge.sh/posts/groups_william/"
+            ><span>Dihedral Group of order 3 for 13 Year-olds</span
+            ><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+        >
+        
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+
+    
+
+
+    
+</article>
+
+
+    </main>
+
+    <footer
+    class="mx-auto flex h-[4.5rem] max-w-[--w] items-center px-8 text-xs uppercase tracking-wider opacity-60"
+>
+    <div class="mr-auto">
+         &copy; 2025
+        <a class="link" href="https://hlud6646.surge.sh/">Stories and Cheat-Sheets</a>
+        
+    </div>
+    
+</footer>
+
+  </body>
+</html>

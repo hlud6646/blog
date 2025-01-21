@@ -1,0 +1,768 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="en-us"
+  dir="ltr"
+>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=36077&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    
+    <title>A First Look at Rigorous Probability Theory (WIP) - Stories and Cheat-Sheets</title>
+
+    
+    <meta name="theme-color" />
+
+    
+    
+    
+    
+    <meta name="description" content="This post contains solutions to the exercises to Rosenthal&rsquo;s book.
+Probably not interesting to anyone but me.
+1. The Need For Measure Theory
+1.3.2
+Suppose $\Omega = {1, 2, 3}$ and $F$ is its powerset.
+Find necessary and sufficient conditions on the numbers
+$x = P\{1, 2\},\  y = P\{2, 3\}, \ z = P\{1, 3\}$
+which make $P$ a countably additive probability measure.
+If $P$ is assumed to be a probability measure (hence countably additive) then
+$P\{1\} &#43; P\{2\} = x$ with similar relations for $y$ and $z$.
+Then" />
+    <meta name="author" content="Stories and Cheat-Sheets" />
+    
+
+    
+    
+    
+    
+    
+    
+    <link rel="preload stylesheet" as="style" href="http://localhost:36077/main.min.css" />
+
+    
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/cm-chessboard@5.2.4/assets/styles/cm-chessboard.css"
+    />
+
+    
+    
+    
+    
+    
+    <link rel="preload" as="image" href="http://localhost:36077/theme.png" />
+
+    
+    
+    
+    
+    
+
+    
+    
+    <link rel="preload" as="image" href="http://localhost:36077/github.svg" />
+    
+    <link rel="preload" as="image" href="http://localhost:36077/linkedin.svg" />
+    
+    
+
+    
+    
+    <script
+        defer
+        src="http://localhost:36077/highlight.min.js"
+        onload="hljs.initHighlightingOnLoad();"
+    ></script>
+    
+
+    
+    
+    
+    
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css"
+  integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI"
+  crossorigin="anonymous"
+/>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js"
+  integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t"
+  crossorigin="anonymous"
+></script>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js"
+  integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+  crossorigin="anonymous"
+></script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () =>
+    renderMathInElement(document.body, {
+      
+      
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+      
+      throwOnError: false,
+    }),
+  );
+</script>
+
+    
+    
+    
+
+    
+    <link
+        rel="icon"
+        href="http://localhost:36077/favicon.ico"
+    />
+    <link
+        rel="apple-touch-icon"
+        href="http://localhost:36077/apple-touch-icon.png"
+    />
+
+    
+    <meta name="generator" content="Hugo 0.139.4">
+
+    
+    
+    
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-[--w] px-8 lg:justify-center">
+    <div class="relative z-50 ltr:mr-auto rtl:ml-auto flex items-center">
+        <a
+            class="-translate-y-[1px] text-2xl font-medium"
+            href="http://localhost:36077/"
+            >Stories and Cheat-Sheets</a
+        >
+        
+        
+    </div>
+
+    <div
+        class="btn-menu relative z-50 ltr:-mr-8 rtl:-ml-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+        role="button"
+        aria-label="Menu"
+    ></div>
+
+    
+
+    <script>
+        
+        const htmlClass = document.documentElement.classList;
+        setTimeout(() => {
+            htmlClass.remove("not-ready");
+        }, 10);
+
+        
+        const btnMenu = document.querySelector(".btn-menu");
+        btnMenu.addEventListener("click", () => {
+            htmlClass.toggle("open");
+        });
+
+        
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        const lightBg = "#faf8f1".replace(/"/g, "");
+        const setDark = (isDark) => {
+            metaTheme.setAttribute("content", isDark ? "#000" : lightBg);
+            htmlClass[isDark ? "add" : "remove"]("dark");
+            localStorage.setItem("dark", isDark);
+        };
+
+        
+        const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+        if (htmlClass.contains("dark")) {
+            setDark(true);
+        } else {
+            const darkVal = localStorage.getItem("dark");
+            setDark(darkVal ? darkVal === "true" : darkScheme.matches);
+        }
+
+        
+        darkScheme.addEventListener("change", (event) => {
+            setDark(event.matches);
+        });
+
+        
+        const btnDark = document.querySelector(".btn-dark");
+        btnDark.addEventListener("click", () => {
+            setDark(localStorage.getItem("dark") !== "true");
+        });
+    </script>
+
+    <div
+        class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+    >
+        
+        
+        <nav
+            class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-10 rtl:space-x-reverse"
+        >
+            
+            <a
+                class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+                href="/about/"
+                >About</a
+            >
+            
+            <a
+                class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+                href="/contact/"
+                >Contact</a
+            >
+            
+        </nav>
+        
+
+        
+        <nav
+            class="mt-12 flex justify-center space-x-10 rtl:space-x-reverse dark:invert ltr:lg:ml-14 rtl:lg:mr-14 lg:mt-0 lg:items-center"
+        >
+            
+            <a
+                class="h-7 w-7 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+                style="--url: url(./github.svg)"
+                href="https://github.com/hlud6646"
+                target="_blank"
+                rel="me"
+            >
+                github
+            </a>
+            
+            <a
+                class="h-7 w-7 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+                style="--url: url(./linkedin.svg)"
+                href="https://linkedin.com/in/hugoludemann"
+                target="_blank"
+                rel="me"
+            >
+                linkedin
+            </a>
+            
+        </nav>
+        
+    </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100vh-9rem)] max-w-[--w] px-8 pb-16 pt-14 dark:prose-invert"
+    >
+      
+
+<article>
+    <header class="mb-14">
+        <h1 class="!my-0 pb-2.5">A First Look at Rigorous Probability Theory (WIP)</h1>
+
+        
+        <div class="text-xs antialiased opacity-60">
+            
+            <time>Jun 19, 2023</time>
+            
+            
+            
+            
+        </div>
+        
+    </header>
+
+    
+    
+    <footer class="mt-12 flex flex-wrap">
+         
+        <a
+            class="mb-1.5 ltr:mr-1.5 rtl:ml-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+            href="http://localhost:36077/tags/math"
+            >math</a
+        >
+         
+        <a
+            class="mb-1.5 ltr:mr-1.5 rtl:ml-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+            href="http://localhost:36077/tags/probability"
+            >probability</a
+        >
+         
+        <a
+            class="mb-1.5 ltr:mr-1.5 rtl:ml-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+            href="http://localhost:36077/tags/measure-theory"
+            >measure-theory</a
+        >
+         
+        <a
+            class="mb-1.5 ltr:mr-1.5 rtl:ml-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+            href="http://localhost:36077/tags/homework"
+            >homework</a
+        >
+        
+    </footer>
+    
+
+    <section><p>This post contains solutions to the exercises to Rosenthal&rsquo;s book.
+Probably not interesting to anyone but me.</p>
+<h2 id="1-the-need-for-measure-theory">1. The Need For Measure Theory</h2>
+<h3 id="132">1.3.2</h3>
+<p><em>Suppose $\Omega = {1, 2, 3}$ and $F$ is its powerset.
+Find necessary and sufficient conditions on the numbers
+$x = P\{1, 2\},\  y = P\{2, 3\}, \ z = P\{1, 3\}$
+which make $P$ a countably additive probability measure.</em></p>
+<p>If $P$ is assumed to be a probability measure (hence countably additive) then
+$P\{1\} + P\{2\} = x$ with similar relations for $y$ and $z$.
+Then</p>
+<p>$$2 = 2(P\{1\} + P\{2\} + P\{3\}) = x + y + z  \ \ \ \ \  (*)$$</p>
+<p>Obviously we will also require that
+$P\{\emptyset\} = 0$ and $P\Omega = 1$, from which we get
+$P\{1\} = 1 - P\{1\}^C = 1 - y$ with similar relations for the other outcomes:</p>
+<p>$$
+\begin{aligned}
+&amp;P\{1\} = 1 - y,\\
+&amp;P\{2\} = 1 - z,\\
+&amp;P\{3\} = 1 - x (**)
+\end{aligned}
+$$</p>
+<p>To verify that $(*)$ and $(**)$ in turn define a proper measure
+(i.e. that they are also sufficient conditions) assume these relations
+and verify that $P$ is additive for any pair of disjoint subsets.
+For example,
+$$
+P\{1\} + P\{2\}  \  = <br>
+1 - y + 1 - z = 2 - (x + y + z) + x \ = <br>
+x = P\{1, 2\}
+$$
+as required.</p>
+<h3 id="133">1.3.3</h3>
+<p><em>Define $P$ on sets of natural numbers by $P(A)$ = $0$ if $A$ is finite and $1$ if infinte. Is $P$ finitely additive?</em>
+No, since we would then have
+$$
+1 = P(\mathbb{N}) = P(odds) + P(evens) = 2.
+$$</p>
+<h3 id="134">1.3.4</h3>
+<p><em>Let $P$ be the counting measure on $\mathbb{N}$, that is $|A|$ if $A$ is finite or $\infty$ otherwise.
+Is $P$ finitely/countably additive?</em>
+If $A_i$ is a finite and disjoint collection of natural numbers then
+$|\cup A_i| = \sum |A_i|$, i.e. $P$ is additive.
+If $A_i$ is a countably infinite and disjoint collection then each set
+contains at least one element. Then
+$\sum_\mathbb{N}|A_i| \geq \sum_\mathbb{N} 1 = \infty$ and
+$|\cup A_i|$ must also contain an infinite number of elements.</p>
+<!-- ### 1.3.5 -->
+<!-- _(b) Exhibit a function on $2^{[0,1]}$ which is countably additive -->
+<!-- and shift invariant but not defined on intervals as length._ -->
+<!-- Let $f(A)$ be $0$ if $A$ is countable and $1$ otherwise. This funnction is -->
+<!-- clearly shift invariant and does not represent lengths. The fact that $f$ -->
+<!-- is countably additive follows from the result that says "a countable union -->
+<!-- of countable sets is countable."  In detail, if $\{A_i\}$ is some family of -->
+<!-- disjoint sets indexed over $\mathbb{N}$ then either no single $A_i$ is uncountably -->
+<!-- infinite or there is at least one which is. In the first case -->
+<!-- $\sum P(A_i) = \sum 0 = 0$ -->
+<!-- while by the result just claimed $P(\cup A_i) = 0$ since the union is countable. -->
+<!-- In the other case both $\sum P(A_i)$ and $P(\cup A_i)$ are $1$ -->
+<h2 id="2-probability-triples">2. Probability Triples</h2>
+<h3 id="223">2.2.3</h3>
+<p><em>Let $J$ be the collection of all intervals in $[0,1]$. Then $J$ is a semi-algebra.</em>
+By definition we include degenrate intervals, so $J$ contains the empty set.
+Also the full space $[0,1]$ is an interval and so also in $J$.
+The intersection of two intervals is again an interval and so by induction is any
+finite intersection of intervals. For various kinds of intervals we note that
+the complement is a disjoint union of other intervals.  (Note that this &ldquo;union&rdquo; might
+be of an interval and the empty set, and that it might not be unique.  Both kinds appear
+in the list below.)
+$$
+\begin{aligned}
+&amp;\{\}^C = [0, 1] \\
+&amp;\{0\}^C = (0, 1] \\
+&amp;\{ a\}^C = [0, a) \dot{\cup} (a, 1],\ \  a &gt; 0\\
+&amp;(a, 1)^C = [0, a] \dot{\cup} (a, 1) \ or \  [0, a) \dot \cup [a, 1], \ \ a &gt; 0 \\
+&amp;(a, b]^C = [0, a] \dot \cup (b, 1]
+\end{aligned}
+$$</p>
+<h3 id="225">2.2.5</h3>
+<p><em>Let $B_0$ be the collection of all fininte unions of elements of $J$. Show that $J$ is an
+algebra but not a $\sigma$-algebra.</em>
+By the previous exercise and De Morgan&rsquo;s laws $J$ is closed under taking complements, finite unions and finite intersections, i.e. is an algebra of sets. On the other hand if it were a $\sigma$-algebra then it would contain countable unions of its elements, but by defenition these would also have to be finite unions.</p>
+<h3 id="2316">2.3.16</h3>
+<p><em>Let $(\Omega, \mathcal{M}, P*)$ be the probability triple provided by the extension theorem applied to some
+semi-algebra of sets $J$ with well behaved (as defined in 2.3.1) set function $P$. Then $P*$ is complete.</em>
+Let $A$ be a set in $\mathcal{M}$ with zero measure and suppose $B \subseteq A$.
+Using the decomposition $A \setminus B \ \dot \cup \  A^C = B^C$ we have
+$$P*(B \cap E ) + P*(B^C \cap E) = P*(B \cap E) + P*((A \setminus B) \cap E) + P*(A^C \cap E).$$
+The first two terms on the right vanish, leaving only
+$P*(A^C \cap E)$ which we know is less than $P*(E)$ by the membership of $A$ in $\mathcal{M}$. Hence $B$
+is in $\mathcal{M}$ also.</p>
+<h3 id="243">2.4.3</h3>
+<p>This problem verifies countable monotonicity for the length function on
+real intervals.</p>
+<p><em>(a) Let $A_1, &hellip; A_n$ be a finite colletion of intervals and $I$ some interval with
+$I \subseteq \cup A_i$.  If $P$ describes the length of an interval then
+show that $P(I) \leq \sum P(A_i)$.</em></p>
+<p>Reorder the $A_i$ so that their left endpoints form an increasing sequence
+$a_i$. Define $B_i = [a_i, a_i+1)$ for $i = 1, &hellip;, n - 2$ and $B_n = A_n$
+and note that $B_i$ is a disjoint family whose union conincides with the union
+of the $A_i$. Then by monotonicity and the result of 2.4.2
+$$
+\sum P(A_i) \geq \sum P(B_i) = P(\cup B_i) = P(\cup A_i).
+$$
+Note the possibility of an annoying case where $A_{n-1}$ is of the
+form $[a, b]$ and $A_n$ is $(b, c]$.  In our construction the element
+$b$ will be missed and so $A_n$ should be redefined as $[b, c]$.</p>
+<p><em>(b) Let $I_i$ be a countable collection of open intervals and $I$ some closed interval
+with $I \subseteq \cup I_i.$ Then $P(I) \leq \sum P(I_i)$.</em>
+By the Heine Borel Theorem the open cover $I_i$ of $I$ admits a finite subcover,
+$I_1, &hellip;, I_n$ (after renaming).
+The previous result and the fact that $P$ takes its values
+in the non-negative reals imply
+$$
+P(I) \leq \sum_{i=1}^n P(I_i) \leq \sum_\mathbb{N}P(I_i).
+$$
+<em>(c) Finally let $I_i$ be any countable collection of intervals
+and $I$ any interval with $I \subseteq \cup I_i$. Then
+$P(I) \leq \sum P(I_i)$.</em>
+For each $I_i$ with endpoints $a_i, b_i$ define the open interval
+$J_i = (a_i - 2^{-i}\epsilon, b_i + 2^{-i}\epsilon)$, that is the original
+interval made open and extended by a small amount. Each $J_i$ contains its
+corresponding $I_i$, and the whole collection forms an open cover of $\overline{I}$
+(the closure of $I$). The previous result yields
+$$
+P(\overline{I}) \leq \sum P(J_i).
+$$
+Noting that $P(J_i) = P(\text{int}(I_i)) + 2^{1 - i}\epsilon$
+and that an interval and its interior/closure have the same length we have
+$$
+P(I) = \leq \sum P(I_i) + \sum 2^{1-i}\epsilon
+$$
+where the last term equals $2\epsilon$ and can be made as small as we like.</p>
+<h3 id="245">2.4.5</h3>
+<p><em>Let $A$ be the collection of $(\infty, x]$ for real $x$
+Then the $\sigma$-algebra generated by $A$ is the Borel
+$\sigma$-algebra on $\mathbb{R}$.</em></p>
+<p>The function that takes a set and returns the $\sigma$ algebra
+generated by that set is clearly monotonic.  Hence
+$\sigma(A) \subset \sigma(\{\text{all intervals}\}) = B$
+and to prove equality we only need to show the reverse inclusion.</p>
+<p>Let $a$ be some real number.
+$\sigma(A)$ contains the half open intervals
+$$(-\infty, a + 1/n] \cup (-\infty, a - 1 / n]^C = (a - 1/n, a + 1/n]$$
+and hence their intersection over $\mathbb{N}$, that is $\{a\}$.</p>
+<p>Similarly for any $a &lt; b$ we can write
+$$(-\infty, a] \cup (-\infty, b]^C = (a, b]$$ and so taking unions or
+intersections with the singleton sets described above we find that
+$\sigma(A)$ contains all intervals. But $B$ is defined as the smallest
+$\sigma$-algebra which contains all intervals, so $B \subseteq \sigma(A)$
+as required.</p>
+<h3 id="247">2.4.7</h3>
+<p><em>(a) Prove that the Cantor Set and its complement are Borel Sets.</em>
+The Cantor Set $K$ is constructed from the unit interval by iteratively removing
+a finite number of line segments. At the first stage one segment is removed,
+at the $n$-th stage $2^{n-1}$ segments are removed. Removing a line segment is
+nothing more than taking an intersecion with the complement of that segment (i.e.
+interval) and as this procudure is repeated over $\mathbb{N}$ we have that $K$ is a Borel set.</p>
+<p>Complement?</p>
+<p><em>(b) Prove that the Cantor Set and its complement are Lebesgue Measureable.</em>
+Is this not as simple as pointing out that $B \subseteq M$?</p>
+<p><em>(c,d,e) Let $B_1$ be the set containing all finite or countable unions of intervals in $[0,1]$. This
+set does not form an algebra.</em></p>
+<p>The inductive process of removing intervals from the unit interval to end up with the Cantor Set can be seen from another
+angle as adding intervals to the empty set to end up with its complement.
+In this light it is clear that $K^C$ is a member of $B_1$.</p>
+<p>First observe the fact that if a set contains a non-singleton closed interval then it contains an open interval.
+Now the Cantor Set cannot contain an open interval, since the inductive
+construction ensures that this interval would eventually be chopped. By the (contrapositive of) the previous remark
+if $K$ contains a closed interval then that interval must be a singleton. If however $K$ could be written
+as the countable union of such intervals then it would itself be countable, which it is not. Hence
+$K \nsubseteq B_1$.</p>
+<p>By the previous results $B_1$ is not closed under taking complements and is therefore not a $\sigma$-algebra.</p>
+<!-- ### 2.5.6 -->
+<h3 id="261-a">2.6.1 (a)</h3>
+<p><em>(A semi-algebra for infinite coin tossing.)</em>
+The intersection of two sets $A_{\alpha_1&hellip;\alpha_n}$ and $A_{\beta_1 &hellip; \beta_n \beta_{n+1}&hellip; \beta_m}$
+is either empty if not every $\alpha_i = \beta_i$ for $1&hellip;n$ else it equals the second one.
+Hence $J$ is closed under finite intersections.
+If we write $\alpha_i&rsquo;$ for the negation of $\alpha$ (i.e. $0&rsquo; = 1, 1&rsquo; = 0$) then we can write the complement
+of $A_{\alpha_1&hellip;\alpha_n}$ as
+$$
+A_{\alpha_1&rsquo;} \cup A_{\alpha_1 \alpha_2&rsquo;} &hellip; A_{\alpha_1 \alpha_2 &hellip;\alpha_{n-1} \alpha_n&rsquo;}
+$$
+which is a disjoint union of sets in $J$.</p>
+<h3 id="264">2.6.4</h3>
+<p><em>Verify that $J = \{A \times B, A \in F_1, B \in F_2\}$ is a semi-algebra.</em>
+For sets $A, C$ in $F_1$ and $B, D$ in $F_2$ we have
+$A \times B \cap C \times D = (A \cap C) \times (B \cap D)$.
+The two intsersections are in $F_1, F_2$ respectively (since those are
+$\sigma$-algebras and so the product is in $J$ by definition.</p>
+<p>By a similar argument it is easy to see that $(A \times B)^C = A^C \times B^C$ which
+is a finite disjoint union of members of $J$ (in fact a degenerate union).</p>
+<h3 id="274">2.7.4</h3>
+<p><em>Let $F_1 \subseteq F2,&hellip;$ be an increasing sequence of collections of subsets
+of $\Omega$.</em></p>
+<p><em>(a) Suppose that each $F_i$ is an algebra.
+Then $\cup _ \mathbb{N} F_i$ is an algebra.</em>
+Let $A_1&hellip;A_n$ be some finite collection of sets in $\cup_\mathbb{N} F_i$.
+Then each $A_i$ is contained in $F_{s(i)}$ for some index $s(i)$.
+Since $F_i$ is an increasing sequence the largest of the $F_{s(i)}$
+actually contains all the $A_1&hellip;A_n$, and also contains their union
+(since every $F_i$ is an algebra).</p>
+<p><em>(b) The same cannot be said for $\sigma$-algebras.</em></p>
+<h3 id="275">2.7.5</h3>
+<p><em>Let $F$ be the collection of subsets of $\mathbb{N}$ such that
+either $A$ or $A^C$ is infinite.</em></p>
+<p><em>(a) $F$ is an algebra.</em>
+Let $A, B$ be members of $F$. If both are finite then so is $A \cup B$.
+Furthermore $(A \cup B)^C$ is $\mathbb{N}$ with a finite set removed,
+which is infinte.  If one (say $A$) is infinite then
+$A \cup B$ is infinite, and $(A \cup B)^C$ is contained in
+$A^C$ which is finite.</p>
+<p><em>(b) $F$ is not a $\sigma$-algebra.</em>
+Conisder the sequence of singleton sets $\{2\}, \{4\}$ etc. over the even
+numbers.  Each is in $F$ since each is finite and obviously has an infinite complement
+but their union (the even numbers) is not.</p>
+<p><em>(c) Define $P$ on $F$ by $P = 0, 1$ on finite and infinite sets respectively.
+Is $P$ finitely additive?</em> If so we would have
+$P(odds \cup evens) = P(odds) + P(evens)$.</p>
+<p><em>(d) Is $P$ (as defined above) countably additive?</em>
+Let $A_n$ be a countably infinite collection of disjoint sets.
+Furthremore, suppose that they are all finite. Then
+$\sum_\mathbb{N} P(A_i) = \sum_\mathbb{N} 0 = 0$. But each
+set contains at least one element and so their
+their (disjoint) union over $\mathbb{N}$ must be infinite, i.e. has measure $1$.
+<strong>[Fine but show me such a collection!]</strong></p>
+<h3 id="276">2.7.6</h3>
+<p><em>Let $F$ be the collection of subsets of the unit interval with the property that
+if $A$ is in $F$ then either $A$ or $A^C$ is finite. Let $P(A)$ be $0$ if
+$A$ is finite and $1$ if $A^C$ is finite.</em></p>
+<p>(a) $F$ is an algebra. It is immediate that $F$ contains the empty set, the full unit
+interval and that $F$ is closed under taking complements. To check that it contains
+finite unions first assume that $A, B$ are both finite. Then so is their union, and the
+complement of their union is infinte. Else if $B$ is infinite, then $A \cup B$ is infinite.
+We require that $(A \cup B)^C$ is finite, and by De Morgan&rsquo;s Laws we have that this set is
+not larger than $B^C$, which is finite.</p>
+<p>(b) $F$ is not a $\sigma$-algebra. Consider the countable union of singleton sets of rational numbers.
+The result is $[0, 1] \cap \mathbb{Q}$, which is not contained in $F$.</p>
+<p>(c) If $A$ and $B$ are two finite sets then so is their union and
+$P(A \cup B) = 0 = 0 + 0 = P(A) + P(B).$
+Otherwise if $B$ is infinite then so is the union with $A$ and
+$P(A \cup B) = 0 + 1 = P(A) + P(B)$.
+Lastly if we can find two disjoint and infinite members of $J$ then we will see that $P$
+fails to be additive, since we would have $P(A \cup B) = 1 \neq 2 = P(A) + P(B)$.
+This turns out to be impossible by the following.
+We have that $A \cap B = \emptyset$ and so $(A \cap B)^C = A^C \cup B^C = [0,1]$.
+But $A^C$ and $B^C$ are both finite so their union can&rsquo;t possibly be the full unit interval.
+Hence $P$ is finitely additive.</p>
+<p>(d) By the previous part it is not possible to have a disjoint union of two infinite members in
+$F$.  So to test for countable additivity we only need to check whether $P$ is additive on a
+countably infinite collection of finite sets. This construction turns out to be impossible and
+so $P$ is countably infinite, although only by vacuous truth.</p>
+<p>The reasoning is that if $A_i$ is a family of finite sets indexed over $\mathbb{N}$ then their
+union is a countably infinite set, whose complement is therefore uncountably infinite.  This
+precludes the union from membership in $F$ and so we don&rsquo;t even need to check the additivity of
+$P$ on this set.</p>
+<h3 id="277">2.7.7</h3>
+<p><em>Let $F$ be the collection of all subsets of the unit interval such that
+either $A$ or $A^C$ is countable.
+Define $P = 0, 1$ on countable, uncountable sets respectively.</em></p>
+<p><em>(a) $F$ is an algebra.</em> Suppose $A, B$ are two sets in $F$.
+If both are countable then $A \cup B$ is also countable and $(A \cup B)^C$ is the unit
+interval with a countable set removed, which is uncountable.
+Otherwise if $A$ is uncountable then so is $A \cup B$,
+while $(A \cup B)^C = A^C \cap B^C$ is smaller than $A^c$ which is countable.</p>
+<p><em>(b) $F$ is a $\sigma$-algebra.</em>
+Let $A_1,A_2,&hellip;$ be a collection of sets in $F$.
+Suppose firstly that all are countable. Observe that a countable
+union of countable sets is countable, and that the unit interval less
+a countable set is uncountable.
+Otherwise at least one of the $A_n$ (call it $A_1$) is uncountable, and then so is their union.
+Also $(\cup_\mathbb{N}A_i)^C$ is contained in $A_1^C$ which is countable, hence so
+is the entire union.</p>
+<!-- _(c) P is not finitely additive._ -->
+<!-- We look for two disjoint uncountable subsets $A, B$ of $[0,1]$, since we could then have -->
+<!-- $P(A \cup B) = 1$ and $P(A) + P (B) = 2$.  The Cantor Set and its complement will do. -->
+<!-- Nooooo! The cantor set is not in F. -->
+<!-- ### 2.7.9 -->
+<!-- _The cardinality of a finite $\sigma$-algebra is a power of 2._ -->
+<!-- Consider the non-empty sets $B_1...B_m$ in $\Sigma$ that have no proper subsets. -->
+<!-- Notice that if they were not disjoint, then $B_1, B_2$ would have some common element -->
+<!-- and $B_1 \cap B_2$ would be a proper subset of each, which is not possible. -->
+<!-- ### 2.7.10 -->
+<!-- This is a simple calculation. -->
+<h3 id="2711">2.7.11</h3>
+<p><em>In constructing the Borel $\sigma$-algebra of subsets of $[0,1]$ you could also just start with
+semi-open intervals.</em>
+Let $J&rsquo;$ be the collection of all half open intervals $(a, b]$, together with
+$\{0\}, \emptyset$ and $[0,1]$.
+Let $J$ be the collection of all intervals.
+First note that $\sigma(J&rsquo;)$ contains all the
+singletons, since for any $b &gt; 0$ we have
+$$
+\{b\} = \cap_\mathbb{N} (b - 1 / n, b].
+$$
+Using these singletons $\sigma(J&rsquo;)$ also contains all intervals.
+Since $\sigma(J)$ is the smallest $\sigma$-algebra with this property we have
+$\sigma(J) \subseteq \sigma(J&rsquo;)$.
+But $J&rsquo;$ is smaller than $J$ which gives the reverse inclusion.</p>
+<h3 id="2712">2.7.12</h3>
+<p>Let $D_n = K \oplus\  1/n$. By shift invariance $\lambda(D_n) = 0$ for every $n$.
+If you draw it it looks like $\cup_\mathbb{N} D_n$ is a really large set but still
+$$
+\lambda( \cup_\mathbb{N} D_n) \leq \sum_\mathbb{N} \lambda(D_n) = \sum_\mathbb{N} 0 = 0.
+$$</p>
+<h3 id="2713">2.7.13</h3>
+<p><em>For a sample space $\Omega$, semi algebra $J$, find a non-negative function $P$ with
+$P(\emptyset) = 0$ and $P(\Omega) = 1$ which fails to be countably additive.</em>
+Let the sample space be the non-negative real numbers and the semi-algebra be the set of all
+intervals. Then we can define $P(\Omega) = 1$ and $P = 0$ for any other set.
+We also have
+$$
+P \bigg( \cup_\mathbb{N} [n, n+1)\bigg) = 1 \neq 0 = \sum_\mathbb{N} P[n, n+1).
+$$</p>
+<h3 id="2714">2.7.14</h3>
+<p>(This one is easy calculating, and noticing that $J$ is not a semi-algebra since
+it fails to contain intersections.)</p>
+<!-- ### 2.7.15 -->
+<!-- wtf -->
+<h3 id="2716">2.7.16</h3>
+<p>The hypothesis of countable monotonicity on $P$ is used to prove
+countable monotonicity on $P*$, which is used twice in the proof
+of the extension theorem: to show that $P*$ is an extension of $P$
+and to show that the $\sigma$-algebra $M$ contains $J$.</p>
+<!-- and how would the conclusions be altered?? -->
+<h3 id="2717">2.7.17</h3>
+<p>Let $\Omega = \{1, 2\}$ and $J$ be all subsets. Define $P$ by
+$P\emptyset = 0, P1 = P2 = 1/3, P12 = 1$.</p>
+<p>$J$ contains all intersections and complements, hence is a semi-algebra.
+To check finite superadditivity of $P$ we only need to check that
+$P(1 \cup 2) \geq P1 + P2$ which does hold.
+However $P$ does not posses countable monotonicity, as
+we have $1, 2 \in J$, $12 \subseteq 1 \cup 2$ but not
+$P(12) \leq P1 + P2.$</p>
+<!-- and the last part -->
+<h3 id="2719">2.7.19</h3>
+<p><em>$J$ is a semi-algebra.</em>
+The intersection of any two sets in $J$ is one of the following:
+$$
+\begin{aligned}
+&amp;\emptyset \cap \_  = \emptyset\\
+&amp;n \cap m = \emptyset\\
+&amp;n \cap \Omega = n
+\end{aligned}
+$$
+from which $J$ is closed under intersection.
+Furthermore the complement of any singleton is the finite disjoint of all
+other singletons.</p>
+<p><em>Finite superadditivity on $P$.</em>
+This holds trivially with equality, since the only finite disjoint family of elements in $J$
+whose union is also in $J$ is the union of all the singletons.
+In that case we have $P(\cup_\Omega \{ \omega_i \}) = P(\Omega) = 1$
+and $\sum_\Omega P(\{\omega_i\}) = \sum_\Omega p(\omega_i)$ which is also
+$1$ by definition.</p>
+<p><em>Countable Monotonicity on $P$</em>.
+Every element $\omega$ is contained in exactly one element of $J$ other
+than the full space. So if $\{\omega_i\}$ is some collection of singletons
+with $\{\omega\} \subseteq \cup \{\omega_i\}$ then we must have
+$\omega = \omega_i$ for one of the $\omega_i$.
+As $P$ is non-negative it follows that $P(\{\omega\}) \leq \sum P(\{\omega_i\})$.</p>
+</section>
+
+    
+    
+    
+    
+    <nav
+        class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg !leading-[1.2] *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+    >
+        
+        <a class="ltr:pr-3 rtl:pl-3" href="http://localhost:36077/posts/generating_functions/"
+            ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span
+            ><span>Generating Functions</span></a
+        >
+        
+        
+        <a
+            class="ltr:ml-auto rtl:mr-auto justify-end pl-3"
+            href="http://localhost:36077/posts/bool_monoid/"
+            ><span>Boolean Monoid</span
+            ><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+        >
+        
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+
+    
+
+
+    
+</article>
+
+
+    </main>
+
+    <footer
+    class="mx-auto flex h-[4.5rem] max-w-[--w] items-center px-8 text-xs uppercase tracking-wider opacity-60"
+>
+    <div class="mr-auto">
+         &copy; 2025
+        <a class="link" href="http://localhost:36077/">Stories and Cheat-Sheets</a>
+        
+    </div>
+    
+</footer>
+
+  </body>
+</html>

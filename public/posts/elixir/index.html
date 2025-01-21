@@ -1,0 +1,1512 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="en-us"
+  dir="ltr"
+>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=36077&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    
+    <title>Elixir - Stories and Cheat-Sheets</title>
+
+    
+    <meta name="theme-color" />
+
+    
+    
+    
+    
+    <meta name="description" content="Elixir is a dynamically typed and functional language.
+To me it feels like Python &#43; Haskell, while at the same time
+being very different from both of those languages.
+How is is similar to Python?
+The type system  allows you to write a function like
+def join(x, y)... without mentioning what types x and y will have.
+So long as whatever operations occur in the function body are defined for
+these types, the code will run." />
+    <meta name="author" content="Stories and Cheat-Sheets" />
+    
+
+    
+    
+    
+    
+    
+    
+    <link rel="preload stylesheet" as="style" href="http://localhost:36077/main.min.css" />
+
+    
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/cm-chessboard@5.2.4/assets/styles/cm-chessboard.css"
+    />
+
+    
+    
+    
+    
+    
+    <link rel="preload" as="image" href="http://localhost:36077/theme.png" />
+
+    
+    
+    
+    
+    
+
+    
+    
+    <link rel="preload" as="image" href="http://localhost:36077/github.svg" />
+    
+    <link rel="preload" as="image" href="http://localhost:36077/linkedin.svg" />
+    
+    
+
+    
+    
+    <script
+        defer
+        src="http://localhost:36077/highlight.min.js"
+        onload="hljs.initHighlightingOnLoad();"
+    ></script>
+    
+
+    
+    
+    
+
+    
+    <link
+        rel="icon"
+        href="http://localhost:36077/favicon.ico"
+    />
+    <link
+        rel="apple-touch-icon"
+        href="http://localhost:36077/apple-touch-icon.png"
+    />
+
+    
+    <meta name="generator" content="Hugo 0.139.4">
+
+    
+    
+    
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-[--w] px-8 lg:justify-center">
+    <div class="relative z-50 ltr:mr-auto rtl:ml-auto flex items-center">
+        <a
+            class="-translate-y-[1px] text-2xl font-medium"
+            href="http://localhost:36077/"
+            >Stories and Cheat-Sheets</a
+        >
+        
+        
+    </div>
+
+    <div
+        class="btn-menu relative z-50 ltr:-mr-8 rtl:-ml-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+        role="button"
+        aria-label="Menu"
+    ></div>
+
+    
+
+    <script>
+        
+        const htmlClass = document.documentElement.classList;
+        setTimeout(() => {
+            htmlClass.remove("not-ready");
+        }, 10);
+
+        
+        const btnMenu = document.querySelector(".btn-menu");
+        btnMenu.addEventListener("click", () => {
+            htmlClass.toggle("open");
+        });
+
+        
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        const lightBg = "#faf8f1".replace(/"/g, "");
+        const setDark = (isDark) => {
+            metaTheme.setAttribute("content", isDark ? "#000" : lightBg);
+            htmlClass[isDark ? "add" : "remove"]("dark");
+            localStorage.setItem("dark", isDark);
+        };
+
+        
+        const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+        if (htmlClass.contains("dark")) {
+            setDark(true);
+        } else {
+            const darkVal = localStorage.getItem("dark");
+            setDark(darkVal ? darkVal === "true" : darkScheme.matches);
+        }
+
+        
+        darkScheme.addEventListener("change", (event) => {
+            setDark(event.matches);
+        });
+
+        
+        const btnDark = document.querySelector(".btn-dark");
+        btnDark.addEventListener("click", () => {
+            setDark(localStorage.getItem("dark") !== "true");
+        });
+    </script>
+
+    <div
+        class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+    >
+        
+        
+        <nav
+            class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-10 rtl:space-x-reverse"
+        >
+            
+            <a
+                class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+                href="/about/"
+                >About</a
+            >
+            
+            <a
+                class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+                href="/contact/"
+                >Contact</a
+            >
+            
+        </nav>
+        
+
+        
+        <nav
+            class="mt-12 flex justify-center space-x-10 rtl:space-x-reverse dark:invert ltr:lg:ml-14 rtl:lg:mr-14 lg:mt-0 lg:items-center"
+        >
+            
+            <a
+                class="h-7 w-7 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+                style="--url: url(./github.svg)"
+                href="https://github.com/hlud6646"
+                target="_blank"
+                rel="me"
+            >
+                github
+            </a>
+            
+            <a
+                class="h-7 w-7 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+                style="--url: url(./linkedin.svg)"
+                href="https://linkedin.com/in/hugoludemann"
+                target="_blank"
+                rel="me"
+            >
+                linkedin
+            </a>
+            
+        </nav>
+        
+    </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100vh-9rem)] max-w-[--w] px-8 pb-16 pt-14 dark:prose-invert"
+    >
+      
+
+<article>
+    <header class="mb-14">
+        <h1 class="!my-0 pb-2.5">Elixir</h1>
+
+        
+        <div class="text-xs antialiased opacity-60">
+            
+            <time>Dec 7, 2024</time>
+            
+            
+            
+            
+        </div>
+        
+    </header>
+
+    
+    
+
+    <section><p>Elixir is a dynamically typed and functional language.
+To me it feels like Python + Haskell, while at the same time
+being very different from both of those languages.</p>
+<h3 id="how-is-is-similar-to-python">How is is similar to Python?</h3>
+<p>The type system  allows you to write a function like
+<code>def join(x, y)...</code> without mentioning what types <code>x</code> and <code>y</code> will have.
+So long as whatever operations occur in the function body are defined for
+these types, the code will run.</p>
+<h3 id="how-is-it-similar-to-haskell">How is it similar to Haskell?</h3>
+<p>It is a functional language, i.e. one with immutable data structures.
+You cannot replace the word &ldquo;bad&rdquo; with the word good in the list
+<code>[&quot;nato&quot;, &quot;tastes&quot;, &quot;bad&quot;]</code>, all you can do is create a new list
+with this update effected.
+Elixir also makes use of higher order functions, especially with the <code>Enum</code>
+module for doing things to a collection of items that can be examined one by one.</p>
+<h3 id="how-is-it-different">How is it different?</h3>
+<p>A somewhat unusual feature is that functions are identified by name <em>and arity</em>,
+that is, the number of arguments that they take.
+So</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> greet(first_name) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Hi </span><span style="color:#e6db74">#{</span>first_name<span style="color:#e6db74">}</span><span style="color:#e6db74">!&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> greet(first_name, last_name) <span style="color:#66d9ef">do</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Hello </span><span style="color:#e6db74">#{</span>first_name<span style="color:#e6db74">}</span><span style="color:#e6db74"> {last_name}.&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>will run.</p>
+<p>While Elixir does have some higher order functions, the absence of direct composition, currying and partial application have the effect of making the code
+longer but simpler. I&rsquo;m sure that people will have different views on this one
+though.</p>
+<h3 id="euler">Euler</h3>
+<p>The <a href="https://projecteuler.net/archives">first 50 Project Euler problems</a>
+are my go to for playing with a new programming language. Here are some
+of the more illuminating ones as regards features that highlight the
+character of Elixir.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="color:#66d9ef">defmodule</span> <span style="color:#a6e22e">Euler50</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">require</span> <span style="color:#a6e22e">Logger</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">import</span> <span style="color:#a6e22e">Enum</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@moduledoc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Solutions to the first 50 problems.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  My goal is to write the simplest functions possible, such that each takes no more than a minute to run.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Crazy how often reduce gets used.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  TODO: Move private helper functions to ater the main ones.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Sieve of Eratosthenes, used to make a list of primes up to a given number.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> primes(m) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The inital map of p -&gt; prime-ness</span>
+</span></span><span style="display:flex;"><span>    initial <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>m <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        {x, <span style="color:#66d9ef">true</span>}
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Strike out all multiples of p starting from 2p.</span>
+</span></span><span style="display:flex;"><span>    strike_out <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> p, primes <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      reduce((<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> p)<span style="color:#f92672">..</span>m<span style="color:#f92672">//</span>p, primes, <span style="color:#66d9ef">fn</span> c, acc <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>replace(acc, c, <span style="color:#66d9ef">false</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Strike out multiples of primes up to sqrt(m).</span>
+</span></span><span style="display:flex;"><span>    reduce(<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>trunc(m <span style="color:#f92672">**</span> <span style="color:#ae81ff">0.5</span>), initial, strike_out)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> {_, v} <span style="color:#f92672">-&gt;</span> v <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span>elem(&amp;1, <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Pythagorean triplet generation by Berggren&#39;s transformations that I actually don&#39;t need for problem 39.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> berggren(x) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    berggren1 <span style="color:#f92672">=</span> [[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]]
+</span></span><span style="display:flex;"><span>    berggren2 <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]]
+</span></span><span style="display:flex;"><span>    berggren3 <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    [berggren1, berggren2, berggren3]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> a <span style="color:#f92672">-&gt;</span> map(a, <span style="color:#66d9ef">fn</span> row <span style="color:#f92672">-&gt;</span> zip_with(row, x, <span style="color:#f92672">&amp;</span>(&amp;1 <span style="color:#f92672">*</span> &amp;2)) <span style="color:#f92672">|&gt;</span> sum <span style="color:#66d9ef">end</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Prime factors of an number by trial division.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> prime_factors(n, d \\ <span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">cond</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      n <span style="color:#f92672">&lt;</span> d <span style="color:#f92672">-&gt;</span> []
+</span></span><span style="display:flex;"><span>      rem(n, d) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">-&gt;</span> [d <span style="color:#f92672">|</span> prime_factors(div(n, d))]
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> prime_factors(n, d <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 1: Multiples of 3 or 5.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p1() <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">999</span> <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> rem(n, <span style="color:#ae81ff">3</span>) <span style="color:#f92672">*</span> rem(n, <span style="color:#ae81ff">5</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">end</span>) <span style="color:#f92672">|&gt;</span> sum()
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 2: Even Fibonacci numbers.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p2 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    count_even_fibs_loop(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> count_even_fibs_loop(a, b, total) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">cond</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      b <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4_000_000</span> <span style="color:#f92672">-&gt;</span> total
+</span></span><span style="display:flex;"><span>      rem(b, <span style="color:#ae81ff">2</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">-&gt;</span> count_even_fibs_loop(b, a <span style="color:#f92672">+</span> b, b <span style="color:#f92672">+</span> total)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">true</span> <span style="color:#f92672">-&gt;</span> count_even_fibs_loop(b, a <span style="color:#f92672">+</span> b, total)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 3: Largest prime factor.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p3 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    largest_prime_factor(<span style="color:#ae81ff">600_851_475_143</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> largest_prime_factor(n, d \\ <span style="color:#ae81ff">3</span>) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">cond</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      rem(n, d) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">-&gt;</span> largest_prime_factor(div(n, d), d)
+</span></span><span style="display:flex;"><span>      d <span style="color:#f92672">*</span> d <span style="color:#f92672">&gt;</span> n <span style="color:#f92672">-&gt;</span> n
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">true</span> <span style="color:#f92672">-&gt;</span> largest_prime_factor(n, d <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  4: Largest palindrome product.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p4 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">100</span><span style="color:#f92672">..</span><span style="color:#ae81ff">999</span>, y <span style="color:#f92672">&lt;-</span> x<span style="color:#f92672">..</span><span style="color:#ae81ff">999</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>to_string(x <span style="color:#f92672">*</span> y)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> s <span style="color:#f92672">-&gt;</span> s <span style="color:#f92672">==</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>reverse(s) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> max_by(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>parse<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer()
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  5: Smallest multiple.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p5 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span>prime_factors<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span>frequencies<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> reduce(%{}, <span style="color:#66d9ef">fn</span> x, acc <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>merge(acc, x, <span style="color:#66d9ef">fn</span> _, v1, v2 <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">Kernel</span><span style="color:#f92672">.</span>max(v1, v2) <span style="color:#66d9ef">end</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> {k, v} <span style="color:#f92672">-&gt;</span> k <span style="color:#f92672">**</span> v <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> product
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  6: Sum square difference.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p6 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    sum(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> sum(map(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>, <span style="color:#f92672">&amp;</span>(&amp;1 <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>)))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  7: 10 001th prime.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p7 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    is_prime? <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span>
+</span></span><span style="display:flex;"><span>      n <span style="color:#f92672">-&gt;</span> all?(map(<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>round(n <span style="color:#f92672">**</span> <span style="color:#ae81ff">0.5</span>), <span style="color:#f92672">&amp;</span>(rem(n, &amp;1) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>iterate(<span style="color:#ae81ff">2</span>, <span style="color:#f92672">&amp;</span>(&amp;1 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>filter(is_prime?)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> take(<span style="color:#ae81ff">10000</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">.</span>last()
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  8: Largest product in series.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p8 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>read!(<span style="color:#e6db74">&#34;./data/p8.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>graphemes()
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> chunk_every(<span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span>product<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> max
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  9: Special Pythagorean triplet.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p9 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    {a, b, c} <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1000</span>, b <span style="color:#f92672">&lt;-</span> (a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">..</span><span style="color:#ae81ff">1000</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        {a, b, (a <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> b <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">**</span> <span style="color:#ae81ff">0.5</span>}
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> {a, b, c} <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">+</span> b <span style="color:#f92672">+</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">1000</span> <span style="color:#f92672">and</span> abs(round(c) <span style="color:#f92672">-</span> c) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span> <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> hd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    (a <span style="color:#f92672">*</span> b <span style="color:#f92672">*</span> c) <span style="color:#f92672">|&gt;</span> round
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  10: Summation of primes.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p10 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    primes(<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">|&gt;</span> sum
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  11: Largest product in a grid.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p11 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    matrix <span style="color:#f92672">=</span> p11_load_matrix()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    [
+</span></span><span style="display:flex;"><span>      p11_max_horizontal_product(matrix),
+</span></span><span style="display:flex;"><span>      matrix <span style="color:#f92672">|&gt;</span> p11_transpose <span style="color:#f92672">|&gt;</span> p11_max_horizontal_product,
+</span></span><span style="display:flex;"><span>      matrix <span style="color:#f92672">|&gt;</span> p11_all_diagonals <span style="color:#f92672">|&gt;</span> p11_max_horizontal_product,
+</span></span><span style="display:flex;"><span>      matrix <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span>reverse(&amp;1)) <span style="color:#f92672">|&gt;</span> p11_all_diagonals <span style="color:#f92672">|&gt;</span> p11_max_horizontal_product
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> max
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p11_transpose(rows) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>(length(rows) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> i <span style="color:#f92672">-&gt;</span> map(rows, <span style="color:#66d9ef">fn</span> row <span style="color:#f92672">-&gt;</span> at(row, i) <span style="color:#66d9ef">end</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p11_diagonal(rows, i) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    i<span style="color:#f92672">..</span><span style="color:#ae81ff">0</span><span style="color:#f92672">//-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> j <span style="color:#f92672">-&gt;</span> at(at(rows, j), i <span style="color:#f92672">-</span> j) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p11_all_diagonals(rows) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>(length(rows) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span>p11_diagonal(rows, &amp;1))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p11_max_horizontal_product(rows) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> row <span style="color:#f92672">&lt;-</span> map(rows, <span style="color:#f92672">&amp;</span>chunk_every(&amp;1, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>)), chunk <span style="color:#f92672">&lt;-</span> row <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      product(chunk)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> max
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p11_load_matrix() <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>read!(<span style="color:#e6db74">&#34;./data/p11.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>split(&amp;1))
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> line <span style="color:#f92672">-&gt;</span> map(line, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  12: Highly divisble triangular number.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p12 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    triangles <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>unfold({<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>}, <span style="color:#66d9ef">fn</span>
+</span></span><span style="display:flex;"><span>        {n, t} <span style="color:#f92672">-&gt;</span> {{n, t}, {n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, t <span style="color:#f92672">+</span> n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>}}
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>map(<span style="color:#66d9ef">fn</span> {_, t} <span style="color:#f92672">-&gt;</span> t <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    totient <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span>
+</span></span><span style="display:flex;"><span>      n <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>        prime_factors(n)
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> frequencies
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> {_, v} <span style="color:#f92672">-&gt;</span> v <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> product
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    triangles <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>filter(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> totient<span style="color:#f92672">.</span>(n) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">500</span> <span style="color:#66d9ef">end</span>) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>take(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">|&gt;</span> to_list <span style="color:#f92672">|&gt;</span> hd
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  13: Large sum
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p13 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>read!(<span style="color:#e6db74">&#34;./data/p13.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> line <span style="color:#f92672">-&gt;</span> map(reverse(<span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>graphemes(line)), <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> p13_transpose
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> p13_add_cols(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> reverse
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>to_string(&amp;1))
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> join
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>slice(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer()
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p13_transpose(rows) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>(length(hd(rows)) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> i <span style="color:#f92672">-&gt;</span> map(rows, <span style="color:#66d9ef">fn</span> row <span style="color:#f92672">-&gt;</span> at(row, i) <span style="color:#66d9ef">end</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p13_add_cols([], carry) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    [carry]
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p13_add_cols([column <span style="color:#f92672">|</span> tail], carry) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    s <span style="color:#f92672">=</span> sum(column) <span style="color:#f92672">+</span> carry
+</span></span><span style="display:flex;"><span>    [rem(s, <span style="color:#ae81ff">10</span>) <span style="color:#f92672">|</span> p13_add_cols(tail, div(s, <span style="color:#ae81ff">10</span>))]
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Get the length of the Collatz sequence starting from n.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p14_get(n, collatz) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>has_key?(collatz, n) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      {collatz, n}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>      m <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> rem(n, <span style="color:#ae81ff">2</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>          div(n, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      {foo, x} <span style="color:#f92672">=</span> p14_get(m, collatz)
+</span></span><span style="display:flex;"><span>      new_collatz <span style="color:#f92672">=</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>put(foo, n, <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>fetch!(foo, x))
+</span></span><span style="display:flex;"><span>      {new_collatz, n}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  14: Longest Collatz Sequence
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p14 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    collatz <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      reduce(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>(<span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">6</span>), %{<span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>}, <span style="color:#66d9ef">fn</span>
+</span></span><span style="display:flex;"><span>        x, acc <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>          {acc2, _} <span style="color:#f92672">=</span> p14_get(x, acc)
+</span></span><span style="display:flex;"><span>          acc2
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    max_by(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>(<span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">6</span>), <span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>fetch!(collatz, n) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  15: Lattice paths.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p15 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    initial_grid <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>merge(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> y <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>          {{<span style="color:#ae81ff">0</span>, y}, <span style="color:#ae81ff">1</span>}
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>new(),
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>          {{x, <span style="color:#ae81ff">0</span>}, <span style="color:#ae81ff">1</span>}
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>      )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    count_paths_to <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span>
+</span></span><span style="display:flex;"><span>      {x, y}, grid <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>fetch!(grid, {x <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, y}) <span style="color:#f92672">+</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>fetch!(grid, {x, y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>})
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    grid <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      reduce(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span>, y <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>          {x, y}
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>,
+</span></span><span style="display:flex;"><span>        initial_grid,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">fn</span> z, acc <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>put_new(acc, z, count_paths_to<span style="color:#f92672">.</span>(z, acc))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>      )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    grid <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>fetch!({<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">20</span>})
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  16: Power digit sum
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p16 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">1000</span>) <span style="color:#f92672">|&gt;</span> to_string <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>graphemes() <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">|&gt;</span> sum
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> words(<span style="color:#ae81ff">1000</span>) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;one thousand&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  17: Number letter counts.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> words(n) <span style="color:#f92672">when</span> n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    %{
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">0</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;zero&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;one&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;two&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;three&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;four&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;five&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;six&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">7</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;seven&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;eight&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">9</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;nine&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">10</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;ten&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">11</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;eleven&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">12</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;twelve&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">13</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;thirteen&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">14</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;fourteen&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">15</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;fifteen&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">16</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;sixteen&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">17</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;seventeen&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">18</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;eighteen&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">19</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;nineteen&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>fetch!(n)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> words(n) <span style="color:#f92672">when</span> rem(n, <span style="color:#ae81ff">10</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    %{
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">20</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;twenty&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">30</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;thirty&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">40</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;forty&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">50</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;fifty&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">60</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;sixty&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">70</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;seventy&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">80</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;eighty&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">90</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;ninety&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>fetch!(n)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> words(n) <span style="color:#f92672">when</span> n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    words(div(n, <span style="color:#ae81ff">10</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">&lt;&gt;</span> <span style="color:#e6db74">&#34;-&#34;</span> <span style="color:#f92672">&lt;&gt;</span> words(rem(n, <span style="color:#ae81ff">10</span>))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> words(n) <span style="color:#f92672">when</span> rem(n, <span style="color:#ae81ff">100</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1000</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    words(div(n, <span style="color:#ae81ff">100</span>)) <span style="color:#f92672">&lt;&gt;</span> <span style="color:#e6db74">&#34; hundred&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> words(n) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    words(div(n, <span style="color:#ae81ff">100</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>) <span style="color:#f92672">&lt;&gt;</span> <span style="color:#e6db74">&#34; and &#34;</span> <span style="color:#f92672">&lt;&gt;</span> words(rem(n, <span style="color:#ae81ff">100</span>))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p17 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span>
+</span></span><span style="display:flex;"><span>      n <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>        words(n)
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34; &#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34;-&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>length()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> sum
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  18: Maximum path sum 1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p18 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    triangle <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>read!(<span style="color:#e6db74">&#34;./data/p18.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> line <span style="color:#f92672">-&gt;</span> map(<span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>split(line), <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    paths_by_indicies <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      reduce(
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">14</span>,
+</span></span><span style="display:flex;"><span>        [[<span style="color:#ae81ff">0</span>]],
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">fn</span> _, acc <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>          flat_map(acc, <span style="color:#66d9ef">fn</span> [x <span style="color:#f92672">|</span> xs] <span style="color:#f92672">-&gt;</span> [[x] <span style="color:#f92672">++</span> [x <span style="color:#f92672">|</span> xs], [x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">++</span> [x <span style="color:#f92672">|</span> xs]] <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>      )
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span>reverse<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Convert a path described by indicies to the actual elements in the triangle.</span>
+</span></span><span style="display:flex;"><span>    map(
+</span></span><span style="display:flex;"><span>      paths_by_indicies,
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">fn</span> path <span style="color:#f92672">-&gt;</span> zip_with(triangle, path, <span style="color:#66d9ef">fn</span> row, i <span style="color:#f92672">-&gt;</span> fetch!(row, i) <span style="color:#66d9ef">end</span>) <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span>sum<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> max
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  19: Counting Sundays
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p19 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    twentieth_century <span style="color:#f92672">=</span> <span style="color:#a6e22e">Date</span><span style="color:#f92672">.</span>range(<span style="color:#e6db74">~D[1901-01-01]</span>, <span style="color:#e6db74">~D[2000-12-31]</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    twentieth_century
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> date <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">Date</span><span style="color:#f92672">.</span>day_of_week(date) <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">and</span> date <span style="color:#f92672">==</span> <span style="color:#a6e22e">Date</span><span style="color:#f92672">.</span>beginning_of_month(date) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> length
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  20: Factorial digit sum
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p20 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    reduce(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;*/</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">|&gt;</span> to_string <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>graphemes() <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">|&gt;</span> sum
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  21: Amicable numbers.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p21 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    sum_of_divisors <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>round(n <span style="color:#f92672">**</span> <span style="color:#ae81ff">0.5</span>)
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">|&gt;</span> filter(<span style="color:#f92672">&amp;</span>(rem(n, &amp;1) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">|&gt;</span> flat_map(<span style="color:#66d9ef">fn</span> d <span style="color:#f92672">-&gt;</span> [d, div(n, d)] <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">|&gt;</span> uniq
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">|&gt;</span> sum) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    amicable <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      m <span style="color:#f92672">=</span> sum_of_divisors<span style="color:#f92672">.</span>(n)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> m <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10000</span> <span style="color:#f92672">or</span> n <span style="color:#f92672">==</span> m <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        sum_of_divisors<span style="color:#f92672">.</span>(m) <span style="color:#f92672">==</span> n
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10000</span> <span style="color:#f92672">|&gt;</span> filter(<span style="color:#f92672">&amp;</span>amicable<span style="color:#f92672">.</span>(&amp;1)) <span style="color:#f92672">|&gt;</span> sum
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  22: Names Scores
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p22 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    name_values <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>read!(<span style="color:#e6db74">&#34;./data/p22.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>replace(<span style="color:#e6db74">~s(&#34;)</span>, <span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;,&#34;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> sort
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> name <span style="color:#f92672">-&gt;</span> name <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_charlist() <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> c <span style="color:#f92672">-&gt;</span> c <span style="color:#f92672">-</span> <span style="color:#ae81ff">64</span> <span style="color:#66d9ef">end</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span>sum<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    zip_with(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>length(name_values), name_values, <span style="color:#f92672">&amp;*/</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">|&gt;</span> sum
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  23: Abundant Numbers.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p23 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    sum_of_divisors <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>round(n <span style="color:#f92672">**</span> <span style="color:#ae81ff">0.5</span>)
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">|&gt;</span> filter(<span style="color:#f92672">&amp;</span>(rem(n, &amp;1) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">|&gt;</span> flat_map(<span style="color:#66d9ef">fn</span> d <span style="color:#f92672">-&gt;</span> [d, div(n, d)] <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">|&gt;</span> uniq
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">|&gt;</span> sum) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    abundants <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">..</span><span style="color:#ae81ff">28123</span> <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> sum_of_divisors<span style="color:#f92672">.</span>(n) <span style="color:#f92672">&gt;</span> n <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    sum_of_two_abundants <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> x <span style="color:#f92672">&lt;-</span> abundants, y <span style="color:#f92672">&lt;-</span> abundants, x <span style="color:#f92672">&lt;=</span> y <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">+</span> y
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MapSet</span><span style="color:#f92672">.</span>difference(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">MapSet</span><span style="color:#f92672">.</span>new(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">28123</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">MapSet</span><span style="color:#f92672">.</span>new(sum_of_two_abundants)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> sum
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  24: Lexicographic permutations
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p24 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    reduce(<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>(<span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">6</span>), <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> <span style="color:#f92672">|&gt;</span> to_list, <span style="color:#66d9ef">fn</span> _, acc <span style="color:#f92672">-&gt;</span> p24_next_permutation(acc) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>to_string<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> join
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p24_next_permutation(s) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    k <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span><span style="color:#f92672">..</span><span style="color:#ae81ff">0</span><span style="color:#f92672">//-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">|&gt;</span> find(<span style="color:#66d9ef">fn</span> k <span style="color:#f92672">-&gt;</span> at(s, k) <span style="color:#f92672">&lt;</span> at(s, k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    l <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span><span style="color:#f92672">..</span>(k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">//-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">|&gt;</span> find(<span style="color:#66d9ef">fn</span> l <span style="color:#f92672">-&gt;</span> at(s, k) <span style="color:#f92672">&lt;</span> at(s, l) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    sk <span style="color:#f92672">=</span> at(s, k)
+</span></span><span style="display:flex;"><span>    sl <span style="color:#f92672">=</span> at(s, l)
+</span></span><span style="display:flex;"><span>    s2 <span style="color:#f92672">=</span> s <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">.</span>update_at(k, <span style="color:#66d9ef">fn</span> _ <span style="color:#f92672">-&gt;</span> sl <span style="color:#66d9ef">end</span>) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">.</span>update_at(l, <span style="color:#66d9ef">fn</span> _ <span style="color:#f92672">-&gt;</span> sk <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    start <span style="color:#f92672">=</span> s2 <span style="color:#f92672">|&gt;</span> take(k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    rest <span style="color:#f92672">=</span> s2 <span style="color:#f92672">|&gt;</span> drop(k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    start <span style="color:#f92672">++</span> reverse(rest)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  25: 1000-digit Fibonacci Number
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p25 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    p25_fib(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p25_fib(a, b, n) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> b <span style="color:#f92672">|&gt;</span> to_string <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>graphemes() <span style="color:#f92672">|&gt;</span> length <span style="color:#f92672">==</span> <span style="color:#ae81ff">1000</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      n
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>      p25_fib(b, a <span style="color:#f92672">+</span> b, n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Slightly dodgy algorithm since it will give the prefix as well as the cyclic part, e.g</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># 6 goes to [1, 6].</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p26_cycle(d, r, seen_before, res) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">cond</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      r <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">-&gt;</span> []
+</span></span><span style="display:flex;"><span>      member?(seen_before, r) <span style="color:#f92672">-&gt;</span> res
+</span></span><span style="display:flex;"><span>      d <span style="color:#f92672">&gt;</span> r <span style="color:#f92672">-&gt;</span> p26_cycle(d, <span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> r, seen_before, res)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">true</span> <span style="color:#f92672">-&gt;</span> p26_cycle(d, rem(r, d), [r <span style="color:#f92672">|</span> seen_before], [div(r, d) <span style="color:#f92672">|</span> res])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  26: Reciprocal cycles
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p26 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1000</span> <span style="color:#f92672">|&gt;</span> max_by(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> length(p26_cycle(n, <span style="color:#ae81ff">1</span>, [], [])) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  27: Quadratic Primes.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p27 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># A pretend infinite list.</span>
+</span></span><span style="display:flex;"><span>    primes <span style="color:#f92672">=</span> primes(<span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">MapSet</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    count_prime_run <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span>
+</span></span><span style="display:flex;"><span>      {a, b} <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>iterate(<span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>(&amp;1 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>map(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> n <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> a <span style="color:#f92672">*</span> n <span style="color:#f92672">+</span> b <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>take_while(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">MapSet</span><span style="color:#f92672">.</span>member?(primes, &amp;1))
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> to_list
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> length
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {a, b} <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> a <span style="color:#f92672">&lt;-</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1000</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1000</span>, b <span style="color:#f92672">&lt;-</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1000</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1000</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        {a, b}
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> max_by(count_prime_run)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    a <span style="color:#f92672">*</span> b
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 28: Number Spiral Diagonals
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p28 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    corner_sum <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> k <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      n <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> n <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">*</span> n <span style="color:#f92672">+</span> <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span> <span style="color:#f92672">|&gt;</span> map(corner_sum) <span style="color:#f92672">|&gt;</span> sum) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem Distinct Powers
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p29 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>, b <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      a <span style="color:#f92672">**</span> b
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> uniq
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> length
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 30: Digit Fifth Powers
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p30 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    digit_power_sum <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span>
+</span></span><span style="display:flex;"><span>      n <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>        n
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> to_string
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>graphemes()
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span>(&amp;1 <span style="color:#f92672">**</span> <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> sum
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Set an arbitrary upper bound of 1_000_000.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1_000_000</span> <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> digit_power_sum<span style="color:#f92672">.</span>(n) <span style="color:#f92672">==</span> n <span style="color:#66d9ef">end</span>) <span style="color:#f92672">|&gt;</span> sum
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 31: Coin Sums
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p31() <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    p31_change(<span style="color:#ae81ff">200</span>, [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">200</span>])
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p31_change(<span style="color:#ae81ff">0</span>, _) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p31_change(n, _) <span style="color:#f92672">when</span> n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p31_change(_, []) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p31_change(n, coins <span style="color:#f92672">=</span> [coin <span style="color:#f92672">|</span> rest]) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    p31_change(n <span style="color:#f92672">-</span> coin, coins) <span style="color:#f92672">+</span> p31_change(n, rest)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 32: Pandigital Products
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p32() <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Guess an upper bound for each factor.</span>
+</span></span><span style="display:flex;"><span>    m <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>m, b <span style="color:#f92672">&lt;-</span> (a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">..</span>m <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      {a <span style="color:#f92672">*</span> b,
+</span></span><span style="display:flex;"><span>       [a, b, a <span style="color:#f92672">*</span> b]
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> to_string(n) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">|&gt;</span> join}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> {_, b} <span style="color:#f92672">-&gt;</span> sort(to_charlist(b)) <span style="color:#f92672">==</span> <span style="color:#e6db74">~c&#34;123456789&#34;</span> <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> {n, _} <span style="color:#f92672">-&gt;</span> n <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> uniq
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> sum
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 33: Digit Cancelling Fractions
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p33 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    frac2 <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">..</span><span style="color:#ae81ff">99</span>, b <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">..</span><span style="color:#ae81ff">99</span>, a <span style="color:#f92672">&lt;</span> b <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        {a, b}
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    compare <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> {a, b}, {c, d} <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">*</span> d <span style="color:#f92672">==</span> b <span style="color:#f92672">*</span> c <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Cancel the leading digits.</span>
+</span></span><span style="display:flex;"><span>    cancel11 <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> {a, b} <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      compare<span style="color:#f92672">.</span>({rem(a, <span style="color:#ae81ff">10</span>), rem(b, <span style="color:#ae81ff">10</span>)}, {a, b}) <span style="color:#f92672">and</span> div(a, <span style="color:#ae81ff">10</span>) <span style="color:#f92672">==</span> div(b, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Keep the leading digits.</span>
+</span></span><span style="display:flex;"><span>    cancel22 <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> {a, b} <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      compare<span style="color:#f92672">.</span>({div(a, <span style="color:#ae81ff">10</span>), div(b, <span style="color:#ae81ff">10</span>)}, {a, b}) <span style="color:#f92672">and</span> rem(a, <span style="color:#ae81ff">10</span>) <span style="color:#f92672">==</span> rem(b, <span style="color:#ae81ff">10</span>) <span style="color:#f92672">and</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">not</span> (rem(a, <span style="color:#ae81ff">10</span>) <span style="color:#f92672">*</span> rem(b, <span style="color:#ae81ff">10</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Keep the leading digit of the numerator and the second digit of the denominator.</span>
+</span></span><span style="display:flex;"><span>    cancel12 <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> {a, b} <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      compare<span style="color:#f92672">.</span>({div(a, <span style="color:#ae81ff">10</span>), rem(b, <span style="color:#ae81ff">10</span>)}, {a, b}) <span style="color:#f92672">and</span> rem(a, <span style="color:#ae81ff">10</span>) <span style="color:#f92672">==</span> div(b, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Keep the second digit of the numerator and the leading digit of the denominator.</span>
+</span></span><span style="display:flex;"><span>    cancel21 <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> {a, b} <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      compare<span style="color:#f92672">.</span>({rem(a, <span style="color:#ae81ff">10</span>), div(b, <span style="color:#ae81ff">10</span>)}, {a, b}) <span style="color:#f92672">and</span> div(a, <span style="color:#ae81ff">10</span>) <span style="color:#f92672">==</span> rem(b, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {a, b} <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      reduce(
+</span></span><span style="display:flex;"><span>        frac2
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> {a, b} <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>          [cancel11, cancel22, cancel21, cancel12] <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> f <span style="color:#f92672">-&gt;</span> f<span style="color:#f92672">.</span>({a, b}) <span style="color:#66d9ef">end</span>) <span style="color:#f92672">|&gt;</span> any?
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>),
+</span></span><span style="display:flex;"><span>        {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>},
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">fn</span> {a, b}, {c, d} <span style="color:#f92672">-&gt;</span> {a <span style="color:#f92672">*</span> c, b <span style="color:#f92672">*</span> d} <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>      )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Notice that the numerator cleanly divides the denominator, so no need to fuss with simplifying fractions.</span>
+</span></span><span style="display:flex;"><span>    div(b, a)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> factorial(n) <span style="color:#f92672">when</span> n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> factorial(n) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    reduce(<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>n, <span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>(&amp;1 <span style="color:#f92672">*</span> &amp;2))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 34: Digit Factorials
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p34 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100_000</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      n
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>to_string()
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>graphemes()
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span>factorial<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> sum <span style="color:#f92672">==</span> n
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> sum
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 35: Circular Primes
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p35 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    primes <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      primes(<span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">6</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>to_string<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> p <span style="color:#f92672">-&gt;</span> uniq(<span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>graphemes(p)) <span style="color:#f92672">--</span> [<span style="color:#e6db74">&#34;1&#34;</span>, <span style="color:#e6db74">&#34;3&#34;</span>, <span style="color:#e6db74">&#34;7&#34;</span>, <span style="color:#e6db74">&#34;9&#34;</span>] <span style="color:#f92672">==</span> [] <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">MapSet</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    rotations <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> s <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      l <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>length(s) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>l
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> i <span style="color:#f92672">-&gt;</span> [<span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>slice(s, i, l <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>slice(s, <span style="color:#ae81ff">0</span>, i)] <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span>join<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    circular <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> p <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      rotations<span style="color:#f92672">.</span>(p) <span style="color:#f92672">|&gt;</span> all?(<span style="color:#66d9ef">fn</span> rotation <span style="color:#f92672">-&gt;</span> member?(primes, rotation) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Add 2 for circular primes 2 and 5.</span>
+</span></span><span style="display:flex;"><span>    (primes <span style="color:#f92672">|&gt;</span> filter(circular) <span style="color:#f92672">|&gt;</span> length) <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 36: Double-base Palindromes
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p36 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1_000_000</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>to_string<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> s <span style="color:#f92672">-&gt;</span> s <span style="color:#f92672">==</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>reverse(s) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> s <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>to_string(<span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer(s), <span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> s <span style="color:#f92672">-&gt;</span> s <span style="color:#f92672">==</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>reverse(s) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer(&amp;1, <span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> sum
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 37: Truncatable Primes
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p37 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    primes <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      primes(<span style="color:#ae81ff">750_000</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>to_string<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># |&gt; filter(fn p -&gt; uniq(String.graphemes(p)) -- [&#34;1&#34;, &#34;3&#34;, &#34;7&#34;, &#34;9&#34;] == [] end)</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">MapSet</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    truncations <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> s <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      l <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>length(s) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>      [s] <span style="color:#f92672">++</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>l <span style="color:#f92672">|&gt;</span> flat_map(<span style="color:#66d9ef">fn</span> i <span style="color:#f92672">-&gt;</span> [<span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>slice(s, <span style="color:#ae81ff">0</span>, i), <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>slice(s, i, l)] <span style="color:#66d9ef">end</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    primes
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> p <span style="color:#f92672">-&gt;</span> all?(truncations<span style="color:#f92672">.</span>(p), <span style="color:#f92672">&amp;</span>member?(primes, &amp;1)) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> sum
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p38_helper(start, n, acc) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    s <span style="color:#f92672">=</span> acc <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>to_string<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">|&gt;</span> join
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>length(s) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">9</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      p38_helper(start, n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, [start <span style="color:#f92672">*</span> n <span style="color:#f92672">|</span> acc])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>      acc
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p38_multiples(start) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    p38_helper(start, <span style="color:#ae81ff">1</span>, [])
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 38: Pandigital Multiples
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p38 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">9</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10000</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      p38_multiples(n) <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>to_string<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">|&gt;</span> join <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>graphemes() <span style="color:#f92672">|&gt;</span> sort <span style="color:#f92672">|&gt;</span> join <span style="color:#f92672">==</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;123456789&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      p38_multiples(n) <span style="color:#f92672">|&gt;</span> reverse <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>to_string<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">|&gt;</span> join
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> sort
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> reverse
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> hd
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer()
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 39: Integer Right Triangles
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p39() <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    triples <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">999</span>, b <span style="color:#f92672">&lt;-</span> (a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">..</span><span style="color:#ae81ff">999</span>, a <span style="color:#f92672">+</span> b <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        c2 <span style="color:#f92672">=</span> a <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> b <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        c <span style="color:#f92672">=</span> round(c2 <span style="color:#f92672">**</span> <span style="color:#ae81ff">0.5</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> abs(c <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> c2) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">and</span> a <span style="color:#f92672">+</span> b <span style="color:#f92672">+</span> c <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1000</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>          {a, b, c}
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> x <span style="color:#f92672">-&gt;</span> x <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {perimeter, _} <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      reduce(
+</span></span><span style="display:flex;"><span>        triples,
+</span></span><span style="display:flex;"><span>        %{},
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">fn</span> {a, b, c}, acc <span style="color:#f92672">-&gt;</span> acc <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>update(a <span style="color:#f92672">+</span> b <span style="color:#f92672">+</span> c, <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">fn</span> count <span style="color:#f92672">-&gt;</span> count <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">end</span>) <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>      )
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> max_by(<span style="color:#66d9ef">fn</span> {_, count} <span style="color:#f92672">-&gt;</span> count <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    perimeter
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p40_champernowne(i, s, _, l) <span style="color:#f92672">when</span> i <span style="color:#f92672">&lt;</span> l <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    s
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p40_champernowne(i, s, n, l) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    s_new <span style="color:#f92672">=</span> <span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>to_string(n)
+</span></span><span style="display:flex;"><span>    p40_champernowne(i, s <span style="color:#f92672">&lt;&gt;</span> s_new, n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, l <span style="color:#f92672">+</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>length(s_new))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 40: Champernowne&#39;s Constant
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p40 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#f92672">&lt;&gt;</span> p40_champernowne(<span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">1000</span>, <span style="color:#ae81ff">10_000</span>, <span style="color:#ae81ff">100_000</span>, <span style="color:#ae81ff">1_000_000</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>at(s, &amp;1))
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> product()
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p41_perms_from(p) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> p <span style="color:#f92672">==</span> sort(p) <span style="color:#f92672">|&gt;</span> reverse <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>      k <span style="color:#f92672">=</span> (length(p) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">..</span><span style="color:#ae81ff">0</span><span style="color:#f92672">//-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">|&gt;</span> find(<span style="color:#66d9ef">fn</span> k <span style="color:#f92672">-&gt;</span> at(p, k) <span style="color:#f92672">&lt;</span> at(p, k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      l <span style="color:#f92672">=</span> length(p)<span style="color:#f92672">..</span>(k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">//-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">|&gt;</span> find(<span style="color:#66d9ef">fn</span> l <span style="color:#f92672">-&gt;</span> at(p, k) <span style="color:#f92672">&lt;</span> at(p, l) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      pk <span style="color:#f92672">=</span> at(p, k)
+</span></span><span style="display:flex;"><span>      pl <span style="color:#f92672">=</span> at(p, l)
+</span></span><span style="display:flex;"><span>      p2 <span style="color:#f92672">=</span> p <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">.</span>update_at(k, <span style="color:#66d9ef">fn</span> _ <span style="color:#f92672">-&gt;</span> pl <span style="color:#66d9ef">end</span>) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">.</span>update_at(l, <span style="color:#66d9ef">fn</span> _ <span style="color:#f92672">-&gt;</span> pk <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      start <span style="color:#f92672">=</span> p2 <span style="color:#f92672">|&gt;</span> take(k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>      rest <span style="color:#f92672">=</span> p2 <span style="color:#f92672">|&gt;</span> drop(k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>      p_new <span style="color:#f92672">=</span> start <span style="color:#f92672">++</span> reverse(rest)
+</span></span><span style="display:flex;"><span>      [p <span style="color:#f92672">|</span> p41_perms_from(p_new)]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 41: Pandigital Primes
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p41 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    prime? <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span>
+</span></span><span style="display:flex;"><span>      n <span style="color:#f92672">-&gt;</span> all?(map(<span style="color:#ae81ff">3</span><span style="color:#f92672">..</span>round(n <span style="color:#f92672">**</span> <span style="color:#ae81ff">0.5</span>)<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">&amp;</span>(rem(n, &amp;1) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      p41_perms_from(<span style="color:#e6db74">&#34;123456789&#34;</span> <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>slice(<span style="color:#ae81ff">0</span>, n) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>graphemes())
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># |&gt; map(&amp;join/1)</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> filter(<span style="color:#66d9ef">fn</span> p <span style="color:#f92672">-&gt;</span> member?([<span style="color:#e6db74">&#34;1&#34;</span>, <span style="color:#e6db74">&#34;3&#34;</span>, <span style="color:#e6db74">&#34;7&#34;</span>, <span style="color:#e6db74">&#34;9&#34;</span>], hd(reverse(p))) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span>join<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> reverse
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> find(prime?)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># We cheat, knowing that the answer has 7 digits. How to you check all 8 and 9 digit</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># values in under a minute? Or how do you know there won&#39;t be one?</span>
+</span></span><span style="display:flex;"><span>    f<span style="color:#f92672">.</span>(<span style="color:#ae81ff">7</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 42: Coded Triangle Numbers
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p42 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    encode <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> s <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_charlist(s) <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> c <span style="color:#f92672">-&gt;</span> c <span style="color:#f92672">-</span> <span style="color:#ae81ff">64</span> <span style="color:#66d9ef">end</span>) <span style="color:#f92672">|&gt;</span> sum <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    encoded_words <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>read!(<span style="color:#e6db74">&#34;./data/p42.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>replace(<span style="color:#e6db74">~s(&#34;)</span>, <span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;,&#34;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> map(encode)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Integers 1, 2, ...</span>
+</span></span><span style="display:flex;"><span>    triangles <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>unfold(<span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> {n, n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>} <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Triangle numbers 1, 3, ...</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>map(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> div(n <span style="color:#f92672">*</span> (n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Only the ones we need</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> take_while(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> n <span style="color:#f92672">&lt;</span> max(encoded_words) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">MapSet</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    encoded_words <span style="color:#f92672">|&gt;</span> filter(<span style="color:#f92672">&amp;</span>member?(triangles, &amp;1)) <span style="color:#f92672">|&gt;</span> length
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p43_permutations <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>unfold(
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;0123456789&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">fn</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;9876543210&#34;</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>        p <span style="color:#f92672">-&gt;</span> {p, p43_next_perm(p)}
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> p43_next_perm(s) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    p <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>graphemes(s)
+</span></span><span style="display:flex;"><span>    k <span style="color:#f92672">=</span> (length(p) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">..</span><span style="color:#ae81ff">0</span><span style="color:#f92672">//-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">|&gt;</span> find(<span style="color:#66d9ef">fn</span> k <span style="color:#f92672">-&gt;</span> at(p, k) <span style="color:#f92672">&lt;</span> at(p, k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    l <span style="color:#f92672">=</span> length(p)<span style="color:#f92672">..</span>(k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">//-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">|&gt;</span> find(<span style="color:#66d9ef">fn</span> l <span style="color:#f92672">-&gt;</span> at(p, k) <span style="color:#f92672">&lt;</span> at(p, l) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    pk <span style="color:#f92672">=</span> at(p, k)
+</span></span><span style="display:flex;"><span>    pl <span style="color:#f92672">=</span> at(p, l)
+</span></span><span style="display:flex;"><span>    p2 <span style="color:#f92672">=</span> p <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">.</span>update_at(k, <span style="color:#66d9ef">fn</span> _ <span style="color:#f92672">-&gt;</span> pl <span style="color:#66d9ef">end</span>) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">List</span><span style="color:#f92672">.</span>update_at(l, <span style="color:#66d9ef">fn</span> _ <span style="color:#f92672">-&gt;</span> pk <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    start <span style="color:#f92672">=</span> p2 <span style="color:#f92672">|&gt;</span> take(k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    rest <span style="color:#f92672">=</span> p2 <span style="color:#f92672">|&gt;</span> drop(k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    (start <span style="color:#f92672">++</span> reverse(rest)) <span style="color:#f92672">|&gt;</span> join
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 43: Sub-string Divisibility
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p43() <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The substring divisibility property</span>
+</span></span><span style="display:flex;"><span>    special? <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> p <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># f = fn {i, m} -&gt; rem(String.slice(p, i, 3) |&gt; String.to_integer(), m) == 0 end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      f <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> {i, m} <span style="color:#f92672">-&gt;</span> rem(<span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>slice(p, i, <span style="color:#ae81ff">3</span>) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer(), m) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>      zip(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">7</span>, [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">17</span>]) <span style="color:#f92672">|&gt;</span> map(f) <span style="color:#f92672">|&gt;</span> all?
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    p43_permutations() <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>filter(special?) <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">|&gt;</span> sum
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 44: Pentagonal Numbers
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p44 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    pentagonals <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>unfold(<span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> {n, n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>} <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>map(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> div(n <span style="color:#f92672">*</span> (<span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> take(<span style="color:#ae81ff">3000</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">MapSet</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {a, b} <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> a <span style="color:#f92672">&lt;-</span> pentagonals, b <span style="color:#f92672">&lt;-</span> pentagonals, a <span style="color:#f92672">&lt;</span> b <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        {a, b}
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> find(<span style="color:#66d9ef">fn</span> {a, b} <span style="color:#f92672">-&gt;</span> member?(pentagonals, a <span style="color:#f92672">+</span> b) <span style="color:#f92672">and</span> member?(pentagonals, b <span style="color:#f92672">-</span> a) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    b <span style="color:#f92672">-</span> a
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 45: Triangular, Pentagonal, and Hexagonal
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p45 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    triangulars <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>unfold(<span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> {n, n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>} <span style="color:#66d9ef">end</span>) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>map(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> div(n <span style="color:#f92672">*</span> (n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    int_sqrt <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> round(n <span style="color:#f92672">**</span> <span style="color:#ae81ff">0.5</span>) <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    square? <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> abs(int_sqrt<span style="color:#f92672">.</span>(n) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> n) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">10</span> <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    pentagonal? <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> square?<span style="color:#f92672">.</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">24</span> <span style="color:#f92672">*</span> n) <span style="color:#f92672">and</span> rem(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> int_sqrt<span style="color:#f92672">.</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">24</span> <span style="color:#f92672">*</span> n), <span style="color:#ae81ff">6</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    hexagonal? <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> square?<span style="color:#f92672">.</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> n) <span style="color:#f92672">and</span> rem(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> int_sqrt<span style="color:#f92672">.</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> n), <span style="color:#ae81ff">4</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    triangulars
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>drop(<span style="color:#ae81ff">285</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>filter(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> pentagonal?<span style="color:#f92672">.</span>(n) <span style="color:#f92672">and</span> hexagonal?<span style="color:#f92672">.</span>(n) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> take(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> hd
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 46: Goldbach&#39;s Other Conjecture
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p46 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    primes <span style="color:#f92672">=</span> primes(<span style="color:#ae81ff">10000</span>) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">MapSet</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>    squares <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1000</span> <span style="color:#f92672">|&gt;</span> map(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> n <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    goldbach <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> p <span style="color:#f92672">&lt;-</span> primes, s <span style="color:#f92672">&lt;-</span> squares <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        p <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> s
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> filter(<span style="color:#f92672">&amp;</span>(rem(&amp;1, <span style="color:#ae81ff">2</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">MapSet</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10000</span><span style="color:#f92672">//</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">|&gt;</span> find(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">not</span> (<span style="color:#a6e22e">MapSet</span><span style="color:#f92672">.</span>member?(primes, n) <span style="color:#f92672">or</span> member?(goldbach, n)) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p47_prime_fac(n, d \\ <span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">cond</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      n <span style="color:#f92672">&lt;</span> d <span style="color:#f92672">-&gt;</span> []
+</span></span><span style="display:flex;"><span>      rem(n, d) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">-&gt;</span> [d <span style="color:#f92672">|</span> p47_prime_fac(div(n, d))]
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> p47_prime_fac(n, d <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 47: Distinct Primes Factors
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p47 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    count_distinct_prime_factors <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> p47_prime_fac(n) <span style="color:#f92672">|&gt;</span> uniq <span style="color:#f92672">|&gt;</span> length <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    chunk_fun <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> element, acc <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">cond</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        length(acc) <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">-&gt;</span> {<span style="color:#e6db74">:cont</span>, hd(reverse(acc)), []}
+</span></span><span style="display:flex;"><span>        count_distinct_prime_factors<span style="color:#f92672">.</span>(element) <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">-&gt;</span> {<span style="color:#e6db74">:cont</span>, [element <span style="color:#f92672">|</span> acc]}
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">true</span> <span style="color:#f92672">-&gt;</span> {<span style="color:#e6db74">:cont</span>, []}
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    after_fun <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span>
+</span></span><span style="display:flex;"><span>      [] <span style="color:#f92672">-&gt;</span> {<span style="color:#e6db74">:cont</span>, []}
+</span></span><span style="display:flex;"><span>      acc <span style="color:#f92672">-&gt;</span> {<span style="color:#e6db74">:cont</span>, acc, []}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>unfold(<span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> {n, n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>} <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>chunk_while([], chunk_fun, after_fun)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> take(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> hd
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> pow10(n, <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    n
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> pow10(n, k) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    rem(n <span style="color:#f92672">*</span> pow10(n, k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 48: Self Powers
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p48 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    pow10(<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1000</span> <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span>pow10(&amp;1, &amp;1)) <span style="color:#f92672">|&gt;</span> sum <span style="color:#f92672">|&gt;</span> rem(<span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 49: Prime Permutations
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p49 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    find_geometric_sequence <span style="color:#f92672">=</span> <span style="color:#66d9ef">fn</span> xs <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> a <span style="color:#f92672">&lt;-</span> xs, b <span style="color:#f92672">&lt;-</span> xs, a <span style="color:#f92672">&lt;</span> b <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        d <span style="color:#f92672">=</span> b <span style="color:#f92672">-</span> a
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>iterate(a, <span style="color:#f92672">&amp;</span>(&amp;1 <span style="color:#f92672">+</span> d)) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>take_while(<span style="color:#f92672">&amp;</span>member?(xs, &amp;1)) <span style="color:#f92672">|&gt;</span> to_list
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    primes(<span style="color:#ae81ff">9999</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> filter(<span style="color:#f92672">&amp;</span>(&amp;1 <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1000</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> group_by(<span style="color:#66d9ef">fn</span> n <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>to_string(n) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>graphemes() <span style="color:#f92672">|&gt;</span> sort <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">.</span>values()
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> filter(<span style="color:#f92672">&amp;</span>(length(&amp;1) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> flat_map(find_geometric_sequence)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> filter(<span style="color:#f92672">&amp;</span>(length(&amp;1) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The first one is the one we are looking for.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> hd
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> map(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Integer</span><span style="color:#f92672">.</span>to_string<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> join
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>to_integer()
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> tails([]) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    []
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> tails(x) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    [x <span style="color:#f92672">|</span> tails(tl(x))]
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@doc</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Problem 50: Consecutive Prime Sum
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> p50 <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    m <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>    primes_set <span style="color:#f92672">=</span> primes(m)
+</span></span><span style="display:flex;"><span>    primes <span style="color:#f92672">=</span> primes_set <span style="color:#f92672">|&gt;</span> sort
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {p, _} <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      tails(primes)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>map(<span style="color:#f92672">&amp;</span>scan(&amp;1, {<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>}, <span style="color:#66d9ef">fn</span> p, {total, count} <span style="color:#f92672">-&gt;</span> {total <span style="color:#f92672">+</span> p, count <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>} <span style="color:#66d9ef">end</span>))
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>flat_map(<span style="color:#f92672">&amp;</span>take_while(&amp;1, <span style="color:#66d9ef">fn</span> {total, _} <span style="color:#f92672">-&gt;</span> total <span style="color:#f92672">&lt;</span> m <span style="color:#66d9ef">end</span>))
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Stream</span><span style="color:#f92672">.</span>filter(<span style="color:#66d9ef">fn</span> {total, _} <span style="color:#f92672">-&gt;</span> member?(primes_set, total) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> max_by(<span style="color:#66d9ef">fn</span> {_, count} <span style="color:#f92672">-&gt;</span> count <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    p
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div></section>
+
+    
+    
+    
+    
+    <nav
+        class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg !leading-[1.2] *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+    >
+        
+        
+        <a
+            class="ltr:ml-auto rtl:mr-auto justify-end pl-3"
+            href="http://localhost:36077/posts/one_liners/"
+            ><span>Bash One Liners</span
+            ><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+        >
+        
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+
+    
+
+
+    
+</article>
+
+
+    </main>
+
+    <footer
+    class="mx-auto flex h-[4.5rem] max-w-[--w] items-center px-8 text-xs uppercase tracking-wider opacity-60"
+>
+    <div class="mr-auto">
+         &copy; 2025
+        <a class="link" href="http://localhost:36077/">Stories and Cheat-Sheets</a>
+        
+    </div>
+    
+</footer>
+
+  </body>
+</html>

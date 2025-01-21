@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Neural-Networks on Stories and Cheat-Sheets</title>
+    <link>https://hlud6646.surge.sh/tags/neural-networks/</link>
+    <description>Recent content in Neural-Networks on Stories and Cheat-Sheets</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 06 Nov 2024 13:22:54 +1100</lastBuildDate>
+    <atom:link href="https://hlud6646.surge.sh/tags/neural-networks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Neural Networks</title>
+      <link>https://hlud6646.surge.sh/posts/neural-nets/</link>
+      <pubDate>Wed, 06 Nov 2024 13:22:54 +1100</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/neural-nets/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m filling in some gaps from my masters and one of the side-quests&#xA;that I never completed was coding up a neural network from scratch.&#xA;These models have the reputation of being a &amp;lsquo;black box&amp;rsquo; where&#xA;data goes in and predictions magically come out. Building one up&#xA;takes away this feeling and reminds you that they&amp;rsquo;re just a clever&#xA;system of linear algebra cogs.&lt;/p&gt;&#xA;&lt;p&gt;This post develops a single hidden layer perceptron in OOP style.&#xA;It is obviously not supposed to be very good, but three demonstrations&#xA;after the model class show that it definitely works.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

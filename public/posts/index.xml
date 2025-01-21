@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Stories and Cheat-Sheets</title>
+    <link>https://hlud6646.surge.sh/posts/</link>
+    <description>Recent content in Posts on Stories and Cheat-Sheets</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 Nov 2024 15:56:01 +1100</lastBuildDate>
+    <atom:link href="https://hlud6646.surge.sh/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Car Accidents in the USA (WIP)</title>
+      <link>https://hlud6646.surge.sh/posts/sql_project/</link>
+      <pubDate>Fri, 15 Nov 2024 15:56:01 +1100</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/sql_project/</guid>
+      <description>&lt;p&gt;Source:&#xA;&lt;a href=&#34;https://github.com/hlud6646/us-accidents&#34;&gt;https://github.com/hlud6646/us-accidents&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;An interviewer asked me &amp;lsquo;What kind of exposure to SQL have you had?&amp;rsquo;&#xA;and I felt that my answer of &amp;lsquo;one uni subject and some hacker-rank&#xA;practice problems&amp;rsquo; was insufficient. Next time I will tell them about&#xA;this.&lt;/p&gt;&#xA;&lt;p&gt;I wanted to do something more interesting than &amp;rsquo;load a database, do some&#xA;queries&amp;rsquo; and have gone into territory where SQL might not be the first&#xA;thing you think of. Essentially this project is a large geospatial&#xA;analysis of car crashes, with lots of visualisations. SQL enters&#xA;the picture via the interface for querying the data, although in the&#xA;end it is not through a database per se, but rather the SQL interface of&#xA;an RDD in Apache Spark.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Neural Networks</title>
+      <link>https://hlud6646.surge.sh/posts/neural-nets/</link>
+      <pubDate>Wed, 06 Nov 2024 13:22:54 +1100</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/neural-nets/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m filling in some gaps from my masters and one of the side-quests&#xA;that I never completed was coding up a neural network from scratch.&#xA;These models have the reputation of being a &amp;lsquo;black box&amp;rsquo; where&#xA;data goes in and predictions magically come out. Building one up&#xA;takes away this feeling and reminds you that they&amp;rsquo;re just a clever&#xA;system of linear algebra cogs.&lt;/p&gt;&#xA;&lt;p&gt;This post develops a single hidden layer perceptron in OOP style.&#xA;It is obviously not supposed to be very good, but three demonstrations&#xA;after the model class show that it definitely works.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Vectorised Operations</title>
+      <link>https://hlud6646.surge.sh/posts/vectorised/</link>
+      <pubDate>Wed, 09 Oct 2024 08:01:10 +1100</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/vectorised/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s well known that vectorised operations should be preferred in numpy/pandas&#xA;for reasons of performance. A less common reason is that it actually makes the&#xA;code easier to read. For a simple example imagine that you are doing a multivariate&#xA;linear regression to transform an $n$ dimensional input to an $m$ dimensional output.&#xA;The model takes the form $y = Bx$ where $B$ is an $(n \times m)$ matrix.&#xA;Now imagine you have $k$ pairs of $(x, y)$ data, and the $k$ inputs are collected&#xA;in an iterable data structure $X$. The naive way to gather model&#xA;predictions is to code up a single prediction and then loop over all data:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Rebuilding Grep</title>
+      <link>https://hlud6646.surge.sh/posts/building_grep/</link>
+      <pubDate>Fri, 02 Aug 2024 13:20:16 +1000</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/building_grep/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Source code: &lt;a href=&#34;https://github.com/hlud6646/grep-haskell&#34;&gt;https://github.com/hlud6646/grep-haskell&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Grep seems like such an innocent tool, but it does a lot.&#xA;Rebuilding it was a hard project for me and I am proud of&#xA;what I have learned along the way. This post is a summary of those&#xA;things.&#xA;From a bird&amp;rsquo;s eye perspective:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Developing an abstract syntax tree for regular expressions;&lt;/li&gt;&#xA;&lt;li&gt;Parsing a provided expression into the abstract representation;&lt;/li&gt;&#xA;&lt;li&gt;Comparing an input to a particular expression.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;1-an-ast-for-regular-expressions&#34;&gt;1. An AST for Regular Expressions.&lt;/h2&gt;&#xA;&lt;p&gt;To start off, you need to define a data type with constructors which correspond&#xA;to elements of an expression.&#xA;For example you need to represent the special&#xA;character &lt;code&gt;\w&lt;/code&gt; which means &amp;lsquo;any alphanumeric character&amp;rsquo; and so on.&#xA;In Haskell this is a breeze:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hoogle and the Rarity of Functions</title>
+      <link>https://hlud6646.surge.sh/posts/hoogle/</link>
+      <pubDate>Thu, 01 Aug 2024 00:10:31 +1000</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/hoogle/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;There are only two hard things in Computer Science: cache invalidation and naming things.&#xA;— Phil Karlton&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Say what you want about Haskell, &lt;em&gt;Hoogle&lt;/em&gt; is an amazing tool.&#xA;If you don&amp;rsquo;t know, it&amp;rsquo;s simply a search engine for functions&#xA;where your search term is a function signature. That probably&#xA;sounds pretty plain. Also, my instinct was that since&#xA;a function can do anything it likes with it&amp;rsquo;s inputs so long&#xA;as the return type is correct, how useful can the signature&#xA;alone really be? It turns out that for a given function&#xA;signature, there are usually very few commonly used functions&#xA;which match. What&#xA;tends to happen is that the first one you see from Prelude&#xA;(the Haskell standard library) is the one you want. As a toy&#xA;example, imagine you are building a parsing library and the&#xA;first step is to identify all the pronumerals: you want the&#xA;&amp;ldquo;x&amp;rdquo; in &amp;ldquo;420x&amp;rdquo;. So you could do &lt;code&gt;dropWhile isDigit &amp;quot;420x&amp;quot;&lt;/code&gt; (&#xA;Before you get upset, I know that this is not how to build&#xA;a parser; it&amp;rsquo;s just a demonstration :melting face:&#xA;)&#xA;I am far from an expert programmer, but I do know the &lt;code&gt;take&lt;/code&gt;,&#xA;&lt;code&gt;drop&lt;/code&gt;, &lt;code&gt;takeWhile&lt;/code&gt; etc functions well enough, probably because&#xA;the names themselves are informative.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Quadratic Approximation for a Proportion</title>
+      <link>https://hlud6646.surge.sh/posts/quapproportion/</link>
+      <pubDate>Sun, 24 Mar 2024 13:53:42 +1100</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/quapproportion/</guid>
+      <description>&lt;p&gt;This notebook demonstrates the advantage of working with a transformed parameter when making a quadratic approximation (i.e. an approximation to the probability density function by a Gaussian distribution).&#xA;If, for example, the parameter to estimate is a proportion and therefore bound to the interval $[0,1]$, it might be difficult to fit a Gaussian, where a significant amount of probability mass might lie in the tails and outside of $[0,1]$. To overcome this we can consider a transformed parameter which is supported on the whole real line, make our approximation, find whatever summary statistic we are interested in, and then transform it back to the original scale.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Statistics in Julia</title>
+      <link>https://hlud6646.surge.sh/posts/stats_julia/</link>
+      <pubDate>Mon, 28 Aug 2023 21:55:47 +1000</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/stats_julia/</guid>
+      <description>&lt;p&gt;I took a course on multivariate statistics and the instructor was very committed to the idea&#xA;of demonstrating the quality of any claimed asymptotic results by running simulations. He did&#xA;everything in R which I do not like and I took the opportunity to see what Julia was like for&#xA;this kind of work.&lt;/p&gt;&#xA;&lt;p&gt;The demonstration below looks at the test statistic for a comparison of multivariate normal&#xA;sample means, if you have two groups and are not willing to assume that they have the same&#xA;underlying covariance structure.  In this case both the test statistic (Hotelling&amp;rsquo;s $T^2$)&#xA;and one of the distribution parameters (the degrees of freedom $\nu$ in the $F$ distribution)&#xA;depend on the observed data.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Dihedral Group of order 3 for 13 Year-olds</title>
+      <link>https://hlud6646.surge.sh/posts/groups_william/</link>
+      <pubDate>Tue, 22 Aug 2023 15:49:29 +1000</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/groups_william/</guid>
+      <description>&lt;p&gt;A young student of mine told me that they had started a new topic&#xA;in class, namely symmetries of plane figures. These were translations,&#xA;reflections and rotations of polygons and some irregular shapes. This&#xA;was a good opportunity to do an exercise involving symmetries that I&amp;rsquo;ve&#xA;done a few times with young high-school students (maybe once with a primary&#xA;school student) which is to fill&#xA;in the Cayley table for the dihedral group. It took us an hour, starting&#xA;with drawing a perfect equilateral triangle (a good problem in its own&#xA;right); defining the expression &amp;lsquo;symmetry preserving transformation&amp;rsquo; and&#xA;then&#xA;finding them all; learning that such a transformation can be described&#xA;by the action on the vertices; discussing the idea that &amp;lsquo;doing nothing&amp;rsquo;&#xA;is a transformation; and finally drawing a table with seven rows and&#xA;columns (also a non-trivial task apparently).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Be GReaT</title>
+      <link>https://hlud6646.surge.sh/posts/be-great/</link>
+      <pubDate>Mon, 10 Jul 2023 17:08:01 +1000</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/be-great/</guid>
+      <description>&lt;p&gt;I came across an article (1) titled &amp;lsquo;Language Models are Realistic Tabular Data&#xA;Generators&amp;rsquo; which argues just that. The process is something like&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Convert your tabular data into sentences;&lt;/li&gt;&#xA;&lt;li&gt;Fine tune a large language model on those sentences;&lt;/li&gt;&#xA;&lt;li&gt;Ask it to generate new ones.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;I found this fairly interesting and decided to test the process. I might have set&#xA;my expectations too high but I got really excited about the idea of a language model&#xA;as a data-augmentation strategy.  The authors have also made their code open source&#xA;and the API is pretty straightforward.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Generating Functions</title>
+      <link>https://hlud6646.surge.sh/posts/generating_functions/</link>
+      <pubDate>Wed, 21 Jun 2023 16:26:15 +1000</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/generating_functions/</guid>
+      <description>&lt;p&gt;This is another homework question from Brett Yorgey&amp;rsquo;s Haskell course,&#xA;which basically develops the ideas in &lt;a href=&#34;https://www.cs.dartmouth.edu/~doug/powser.html&#34;&gt;https://www.cs.dartmouth.edu/~doug/powser.html&lt;/a&gt;.&#xA;The goal is to create a type in Haskell that can represent a formal power series&#xA;so that we can do do cool things with generating functions.&lt;/p&gt;&#xA;&lt;p&gt;We start with a new type, which is like a cons-list but without an empty.&#xA;This is a &amp;lsquo;stream&amp;rsquo; or infinite list.  The constructor will be &lt;code&gt;:~&lt;/code&gt; because&#xA;Haskell only likes infix constructors if the first character is a &lt;code&gt;:&lt;/code&gt;.&#xA;We give it the same infix precedence as regular &lt;code&gt;:&lt;/code&gt; has as defined for the&#xA;&lt;code&gt;[]&lt;/code&gt; type.  This is enough for a recursive definition of a stream:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Boolean Monoid</title>
+      <link>https://hlud6646.surge.sh/posts/bool_monoid/</link>
+      <pubDate>Wed, 07 Dec 2022 21:04:16 +1100</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/bool_monoid/</guid>
+      <description>&lt;p&gt;The homework question asks &amp;lsquo;How many different instances of Monoid are there for the Boolean&#xA;data type?&amp;rsquo; In stead of a mathematical proof I chose a search, motivated by the fact that there&#xA;are $16$ possible binary operators on the set $B = [True, False]$ and that I didn&amp;rsquo;t want to&#xA;check them all. I learnt some things along the way too. Starting with some definitions:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;A &lt;strong&gt;Semigroup&lt;/strong&gt; is a type with an associative binary operator.&lt;/li&gt;&#xA;&lt;li&gt;A &lt;strong&gt;Monoid&lt;/strong&gt; is a semigroup with a neutral element, i.e. a two sided inverse with respect to the operation inherited from the semigroup.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For example, the non-negative integers with the operation $+$ forms a semigroup. With the neutral element $0$ you get a monoid. The same set with $*$ (multiplication) and $1$ is another monoid.  Note that these are two different monoids defined on the same underlying type.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Chess Journal</title>
+      <link>https://hlud6646.surge.sh/posts/chessjournal/</link>
+      <pubDate>Wed, 26 Oct 2022 05:25:50 +1100</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/chessjournal/</guid>
+      <description>&lt;p&gt;&lt;em&gt;7/10&lt;/em&gt; If a defending King is chasing down a passed pawn the &lt;strong&gt;rule of the square&lt;/strong&gt; is a shortcut to determine whether or not the King will be fast enough. If the King is able to enter the square there will be multiple routes to the pawn (the journey will contain a lateral/vertical move that can occur at any stage), unless the pawn stands on the opposite corner of the square to the pawn’s promotion square.  In this case the King still reaches the pawn, but must race straight down the diagonal.  This is a good setup for the side with the pawn to look for an &lt;strong&gt;interference sacrifice&lt;/strong&gt;, which would win a tempo and lead to promotion.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Some Notes on Math Pedagogy</title>
+      <link>https://hlud6646.surge.sh/posts/math-pedagogy/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/math-pedagogy/</guid>
+      <description>&lt;p&gt;This is an unstructured collection of reflections on teaching and learning maths.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Notation.&lt;/strong&gt;&#xA;The flexible way that notation is applied in higher studies was a challenge for me as a high school graduate.  For a long time it really did matter to me that vector quantities were written $\textbf{v}$ or $\overline{v}$ rather than $v$.&#xA;Now I couldn&amp;rsquo;t care less most of the time but I think it helps to&#xA;remember that this was something that for me at least required some getting used to.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Stories and Cheat-Sheets</title>
+    <link>https://hlud6646.surge.sh/tags/python/</link>
+    <description>Recent content in Python on Stories and Cheat-Sheets</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 Nov 2024 15:56:01 +1100</lastBuildDate>
+    <atom:link href="https://hlud6646.surge.sh/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Car Accidents in the USA (WIP)</title>
+      <link>https://hlud6646.surge.sh/posts/sql_project/</link>
+      <pubDate>Fri, 15 Nov 2024 15:56:01 +1100</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/sql_project/</guid>
+      <description>&lt;p&gt;Source:&#xA;&lt;a href=&#34;https://github.com/hlud6646/us-accidents&#34;&gt;https://github.com/hlud6646/us-accidents&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;An interviewer asked me &amp;lsquo;What kind of exposure to SQL have you had?&amp;rsquo;&#xA;and I felt that my answer of &amp;lsquo;one uni subject and some hacker-rank&#xA;practice problems&amp;rsquo; was insufficient. Next time I will tell them about&#xA;this.&lt;/p&gt;&#xA;&lt;p&gt;I wanted to do something more interesting than &amp;rsquo;load a database, do some&#xA;queries&amp;rsquo; and have gone into territory where SQL might not be the first&#xA;thing you think of. Essentially this project is a large geospatial&#xA;analysis of car crashes, with lots of visualisations. SQL enters&#xA;the picture via the interface for querying the data, although in the&#xA;end it is not through a database per se, but rather the SQL interface of&#xA;an RDD in Apache Spark.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Neural Networks</title>
+      <link>https://hlud6646.surge.sh/posts/neural-nets/</link>
+      <pubDate>Wed, 06 Nov 2024 13:22:54 +1100</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/neural-nets/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m filling in some gaps from my masters and one of the side-quests&#xA;that I never completed was coding up a neural network from scratch.&#xA;These models have the reputation of being a &amp;lsquo;black box&amp;rsquo; where&#xA;data goes in and predictions magically come out. Building one up&#xA;takes away this feeling and reminds you that they&amp;rsquo;re just a clever&#xA;system of linear algebra cogs.&lt;/p&gt;&#xA;&lt;p&gt;This post develops a single hidden layer perceptron in OOP style.&#xA;It is obviously not supposed to be very good, but three demonstrations&#xA;after the model class show that it definitely works.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Vectorised Operations</title>
+      <link>https://hlud6646.surge.sh/posts/vectorised/</link>
+      <pubDate>Wed, 09 Oct 2024 08:01:10 +1100</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/vectorised/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s well known that vectorised operations should be preferred in numpy/pandas&#xA;for reasons of performance. A less common reason is that it actually makes the&#xA;code easier to read. For a simple example imagine that you are doing a multivariate&#xA;linear regression to transform an $n$ dimensional input to an $m$ dimensional output.&#xA;The model takes the form $y = Bx$ where $B$ is an $(n \times m)$ matrix.&#xA;Now imagine you have $k$ pairs of $(x, y)$ data, and the $k$ inputs are collected&#xA;in an iterable data structure $X$. The naive way to gather model&#xA;predictions is to code up a single prediction and then loop over all data:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

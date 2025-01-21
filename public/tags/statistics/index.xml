@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statistics on Stories and Cheat-Sheets</title>
+    <link>https://hlud6646.surge.sh/tags/statistics/</link>
+    <description>Recent content in Statistics on Stories and Cheat-Sheets</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Mar 2024 13:53:42 +1100</lastBuildDate>
+    <atom:link href="https://hlud6646.surge.sh/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quadratic Approximation for a Proportion</title>
+      <link>https://hlud6646.surge.sh/posts/quapproportion/</link>
+      <pubDate>Sun, 24 Mar 2024 13:53:42 +1100</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/quapproportion/</guid>
+      <description>&lt;p&gt;This notebook demonstrates the advantage of working with a transformed parameter when making a quadratic approximation (i.e. an approximation to the probability density function by a Gaussian distribution).&#xA;If, for example, the parameter to estimate is a proportion and therefore bound to the interval $[0,1]$, it might be difficult to fit a Gaussian, where a significant amount of probability mass might lie in the tails and outside of $[0,1]$. To overcome this we can consider a transformed parameter which is supported on the whole real line, make our approximation, find whatever summary statistic we are interested in, and then transform it back to the original scale.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

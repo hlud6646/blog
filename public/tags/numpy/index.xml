@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Numpy on Stories and Cheat-Sheets</title>
+    <link>https://hlud6646.surge.sh/tags/numpy/</link>
+    <description>Recent content in Numpy on Stories and Cheat-Sheets</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 09 Oct 2024 08:01:10 +1100</lastBuildDate>
+    <atom:link href="https://hlud6646.surge.sh/tags/numpy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vectorised Operations</title>
+      <link>https://hlud6646.surge.sh/posts/vectorised/</link>
+      <pubDate>Wed, 09 Oct 2024 08:01:10 +1100</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/vectorised/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s well known that vectorised operations should be preferred in numpy/pandas&#xA;for reasons of performance. A less common reason is that it actually makes the&#xA;code easier to read. For a simple example imagine that you are doing a multivariate&#xA;linear regression to transform an $n$ dimensional input to an $m$ dimensional output.&#xA;The model takes the form $y = Bx$ where $B$ is an $(n \times m)$ matrix.&#xA;Now imagine you have $k$ pairs of $(x, y)$ data, and the $k$ inputs are collected&#xA;in an iterable data structure $X$. The naive way to gather model&#xA;predictions is to code up a single prediction and then loop over all data:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

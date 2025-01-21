@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Haskell on Stories and Cheat-Sheets</title>
+    <link>https://hlud6646.surge.sh/tags/haskell/</link>
+    <description>Recent content in Haskell on Stories and Cheat-Sheets</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Aug 2024 13:20:16 +1000</lastBuildDate>
+    <atom:link href="https://hlud6646.surge.sh/tags/haskell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rebuilding Grep</title>
+      <link>https://hlud6646.surge.sh/posts/building_grep/</link>
+      <pubDate>Fri, 02 Aug 2024 13:20:16 +1000</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/building_grep/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Source code: &lt;a href=&#34;https://github.com/hlud6646/grep-haskell&#34;&gt;https://github.com/hlud6646/grep-haskell&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Grep seems like such an innocent tool, but it does a lot.&#xA;Rebuilding it was a hard project for me and I am proud of&#xA;what I have learned along the way. This post is a summary of those&#xA;things.&#xA;From a bird&amp;rsquo;s eye perspective:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Developing an abstract syntax tree for regular expressions;&lt;/li&gt;&#xA;&lt;li&gt;Parsing a provided expression into the abstract representation;&lt;/li&gt;&#xA;&lt;li&gt;Comparing an input to a particular expression.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;1-an-ast-for-regular-expressions&#34;&gt;1. An AST for Regular Expressions.&lt;/h2&gt;&#xA;&lt;p&gt;To start off, you need to define a data type with constructors which correspond&#xA;to elements of an expression.&#xA;For example you need to represent the special&#xA;character &lt;code&gt;\w&lt;/code&gt; which means &amp;lsquo;any alphanumeric character&amp;rsquo; and so on.&#xA;In Haskell this is a breeze:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Boolean Monoid</title>
+      <link>https://hlud6646.surge.sh/posts/bool_monoid/</link>
+      <pubDate>Wed, 07 Dec 2022 21:04:16 +1100</pubDate>
+      <guid>https://hlud6646.surge.sh/posts/bool_monoid/</guid>
+      <description>&lt;p&gt;The homework question asks &amp;lsquo;How many different instances of Monoid are there for the Boolean&#xA;data type?&amp;rsquo; In stead of a mathematical proof I chose a search, motivated by the fact that there&#xA;are $16$ possible binary operators on the set $B = [True, False]$ and that I didn&amp;rsquo;t want to&#xA;check them all. I learnt some things along the way too. Starting with some definitions:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;A &lt;strong&gt;Semigroup&lt;/strong&gt; is a type with an associative binary operator.&lt;/li&gt;&#xA;&lt;li&gt;A &lt;strong&gt;Monoid&lt;/strong&gt; is a semigroup with a neutral element, i.e. a two sided inverse with respect to the operation inherited from the semigroup.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For example, the non-negative integers with the operation $+$ forms a semigroup. With the neutral element $0$ you get a monoid. The same set with $*$ (multiplication) and $1$ is another monoid.  Note that these are two different monoids defined on the same underlying type.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
