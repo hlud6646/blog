@@ -38,6 +38,10 @@ any change to src or tests:
 `while inotifywait -r lib test; do clear && mix test; done`
 
 
+**Edit** There is a tool called `entr` that probably does this better:
+`find files/to/watch | entr -s "command to run"`
+
+
 
 
 
