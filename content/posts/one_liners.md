@@ -18,6 +18,7 @@ tags = ["bash"]
 
 
 #### Docker
+*The more I learn about docker the less useful these appear*.
 
 ##### Find a particular Instance Id:
 `docker ps | cut -d ' ' -f 1 | grep <instance name>`
@@ -43,12 +44,14 @@ any change to src or tests:
 
 
 
-
-
 #### *I Dont't Care* Mode
 To run a program silently and invisibly, redirect stdout and strerr to 
 /dev/null and launch in the background:
 `yourcommand > /dev/null 2>&1 &`.
 
 
+#### Navigation
 
+##### Back Button
+`cd -` will take you to the previous directory. Useful after you `cd` to the 
+home dir and change your mind.
