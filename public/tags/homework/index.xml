@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Homework on Stories and Cheat-Sheets</title>
-    <link>http://localhost:36077/tags/homework/</link>
+    <link>http://localhost:1313/tags/homework/</link>
     <description>Recent content in Homework on Stories and Cheat-Sheets</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 19 Jun 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:36077/tags/homework/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/homework/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A First Look at Rigorous Probability Theory (WIP)</title>
-      <link>http://localhost:36077/posts/probability/</link>
+      <link>http://localhost:1313/posts/probability/</link>
       <pubDate>Mon, 19 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:36077/posts/probability/</guid>
+      <guid>http://localhost:1313/posts/probability/</guid>
       <description>&lt;p&gt;This post contains solutions to the exercises to Rosenthal&amp;rsquo;s book.&#xA;Probably not interesting to anyone but me.&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-the-need-for-measure-theory&#34;&gt;1. The Need For Measure Theory&lt;/h2&gt;&#xA;&lt;h3 id=&#34;132&#34;&gt;1.3.2&lt;/h3&gt;&#xA;&lt;p&gt;&lt;em&gt;Suppose $\Omega = {1, 2, 3}$ and $F$ is its powerset.&#xA;Find necessary and sufficient conditions on the numbers&#xA;$x = P\{1, 2\},\  y = P\{2, 3\}, \ z = P\{1, 3\}$&#xA;which make $P$ a countably additive probability measure.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;If $P$ is assumed to be a probability measure (hence countably additive) then&#xA;$P\{1\} + P\{2\} = x$ with similar relations for $y$ and $z$.&#xA;Then&lt;/p&gt;</description>
     </item>
   </channel>

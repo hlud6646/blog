@@ -1,5 +1,5 @@
 +++
-title = 'Car Accidents in the USA (WIP)'
+title = 'Car Accidents in the USA'
 date = 2024-11-15T15:56:01+11:00
 draft = false
 leaflet = true
@@ -461,7 +461,7 @@ If we are looking for variance in the number of accidents by county, it well
 help to normalize by population for the county first.
 If we do this we see that while Harris county has the most accidents in absolute terms, 
 that is because it is by far the most populous county.
-Travis county is ~1/6 the siz and yet it still has 5 times more accidents than Harris
+Travis county is ~1/6 the size and yet it still has 5 times more accidents than Harris
 on a per capita basis:
 
 |    | geometry   | county   |   accidents | population   |   Ap100k |

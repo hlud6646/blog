@@ -23,7 +23,7 @@
       <description>&lt;h3 id=&#34;me&#34;&gt;Me&lt;/h3&gt;&#xA;&lt;p&gt;I started programming in my final year of high-school, when my maths teacher&#xA;introduced &lt;a href=&#34;projecteuler.net&#34;&gt;Project Euler&lt;/a&gt; to the class. These problems are&#xA;supposed to be solved by a combination of tricky maths and algorithmic programming,&#xA;and I still think they&amp;rsquo;re the best way to get a feeling for a new language.&lt;/p&gt;&#xA;&lt;!-- TODO: link to the Elixir post when completed. --&gt;&#xA;&lt;p&gt;Since then I&amp;rsquo;ve done an undergrad degree in maths, done a fair bit of&#xA;maths tutoring, and recently finished a masters in data-science.  Along&#xA;the way I&amp;rsquo;ve stayed interested in software and have been drawn to the functional&#xA;programming paradigm. This blog is part portfolio, part collection, part reference&#xA;of all these things.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Car Accidents in the USA (WIP)</title>
+      <title>Car Accidents in the USA</title>
       <link>https://hlud6646.surge.sh/posts/sql_project/</link>
       <pubDate>Fri, 15 Nov 2024 15:56:01 +1100</pubDate>
       <guid>https://hlud6646.surge.sh/posts/sql_project/</guid>

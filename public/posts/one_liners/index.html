@@ -42,7 +42,7 @@
   lang="en-us"
   dir="ltr"
 >
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=36077&amp;path=livereload" data-no-instant defer></script>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
@@ -65,16 +65,11 @@ File Statistics
 Show the sizes of everything in the current directory in human readable format:
 du -ah -d 1
 Docker
+The more I learn about docker the less useful these appear.
 Find a particular Instance Id:
 docker ps | cut -d &#39; &#39; -f 1 | grep &lt;instance name&gt;
 Copy something to a location in a running instance:
-docker cp /path/to/something &lt;instance id&gt;:/path/in/instance;
-File Watching
-Execute command on change continuously:
-while inotifywait -e modify &lt;file to watch&gt;; do &lt;some command&gt;; done
-You can monitor directories recursively, e.g. to run test suite on
-any change to src or tests:
-while inotifywait -r lib test; do clear &amp;&amp; mix test; done" />
+docker cp /path/to/something &lt;instance id&gt;:/path/in/instance;" />
     <meta name="author" content="Stories and Cheat-Sheets" />
     
 
@@ -84,7 +79,7 @@ while inotifywait -r lib test; do clear &amp;&amp; mix test; done" />
     
     
     
-    <link rel="preload stylesheet" as="style" href="http://localhost:36077/main.min.css" />
+    <link rel="preload stylesheet" as="style" href="http://localhost:1313/main.min.css" />
 
     
     <link
@@ -98,7 +93,7 @@ while inotifywait -r lib test; do clear &amp;&amp; mix test; done" />
     
     
     
-    <link rel="preload" as="image" href="http://localhost:36077/theme.png" />
+    <link rel="preload" as="image" href="http://localhost:1313/theme.png" />
 
     
     
@@ -108,9 +103,9 @@ while inotifywait -r lib test; do clear &amp;&amp; mix test; done" />
 
     
     
-    <link rel="preload" as="image" href="http://localhost:36077/github.svg" />
+    <link rel="preload" as="image" href="http://localhost:1313/github.svg" />
     
-    <link rel="preload" as="image" href="http://localhost:36077/linkedin.svg" />
+    <link rel="preload" as="image" href="http://localhost:1313/linkedin.svg" />
     
     
 
@@ -118,7 +113,7 @@ while inotifywait -r lib test; do clear &amp;&amp; mix test; done" />
     
     <script
         defer
-        src="http://localhost:36077/highlight.min.js"
+        src="http://localhost:1313/highlight.min.js"
         onload="hljs.initHighlightingOnLoad();"
     ></script>
     
@@ -130,11 +125,11 @@ while inotifywait -r lib test; do clear &amp;&amp; mix test; done" />
     
     <link
         rel="icon"
-        href="http://localhost:36077/favicon.ico"
+        href="http://localhost:1313/favicon.ico"
     />
     <link
         rel="apple-touch-icon"
-        href="http://localhost:36077/apple-touch-icon.png"
+        href="http://localhost:1313/apple-touch-icon.png"
     />
 
     
@@ -150,7 +145,7 @@ while inotifywait -r lib test; do clear &amp;&amp; mix test; done" />
     <div class="relative z-50 ltr:mr-auto rtl:ml-auto flex items-center">
         <a
             class="-translate-y-[1px] text-2xl font-medium"
-            href="http://localhost:36077/"
+            href="http://localhost:1313/"
             >Stories and Cheat-Sheets</a
         >
         
@@ -290,7 +285,7 @@ while inotifywait -r lib test; do clear &amp;&amp; mix test; done" />
          
         <a
             class="mb-1.5 ltr:mr-1.5 rtl:ml-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] dark:bg-white/[8%] dark:hover:bg-white/[12%]"
-            href="http://localhost:36077/tags/bash"
+            href="http://localhost:1313/tags/bash"
             >bash</a
         >
         
@@ -302,6 +297,7 @@ while inotifywait -r lib test; do clear &amp;&amp; mix test; done" />
 <h5 id="show-the-sizes-of-everything-in-the-current-directory-in-human-readable-format">Show the sizes of everything in the current directory in human readable format:</h5>
 <p><code>du -ah -d 1</code></p>
 <h4 id="docker">Docker</h4>
+<p><em>The more I learn about docker the less useful these appear</em>.</p>
 <h5 id="find-a-particular-instance-id">Find a particular Instance Id:</h5>
 <p><code>docker ps | cut -d ' ' -f 1 | grep &lt;instance name&gt;</code></p>
 <h5 id="copy-something-to-a-location-in-a-running-instance">Copy something to a location in a running instance:</h5>
@@ -318,6 +314,10 @@ any change to src or tests:
 <p>To run a program silently and invisibly, redirect stdout and strerr to
 /dev/null and launch in the background:
 <code>yourcommand &gt; /dev/null 2&gt;&amp;1 &amp;</code>.</p>
+<h4 id="navigation">Navigation</h4>
+<h5 id="back-button">Back Button</h5>
+<p><code>cd -</code> will take you to the previous directory. Useful after you <code>cd</code> to the
+home dir and change your mind.</p>
 </section>
 
     
@@ -328,7 +328,7 @@ any change to src or tests:
         class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg !leading-[1.2] *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
     >
         
-        <a class="ltr:pr-3 rtl:pl-3" href="http://localhost:36077/posts/elixir/"
+        <a class="ltr:pr-3 rtl:pl-3" href="http://localhost:1313/posts/elixir/"
             ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span
             ><span>Elixir</span></a
         >
@@ -336,7 +336,7 @@ any change to src or tests:
         
         <a
             class="ltr:ml-auto rtl:mr-auto justify-end pl-3"
-            href="http://localhost:36077/posts/sql_project/"
+            href="http://localhost:1313/posts/sql_project/"
             ><span>Car Accidents in the USA (WIP)</span
             ><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
         >
@@ -365,7 +365,7 @@ any change to src or tests:
 >
     <div class="mr-auto">
          &copy; 2025
-        <a class="link" href="http://localhost:36077/">Stories and Cheat-Sheets</a>
+        <a class="link" href="http://localhost:1313/">Stories and Cheat-Sheets</a>
         
     </div>
     

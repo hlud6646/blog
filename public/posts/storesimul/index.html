@@ -1,0 +1,608 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="en-us"
+  dir="ltr"
+>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    
+    <title>Store Simulation - Stories and Cheat-Sheets</title>
+
+    
+    <meta name="theme-color" />
+
+    
+    
+    
+    
+    <meta name="description" content="When you&rsquo;re early career and smart but not a genius it can be hard to find
+motivated projects either to learn and to demonstrate past learning.  In my case
+I wanted to demonstrate that I have a reasonable level of ability in managing
+and using relational databases. Sure I&rsquo;ve done
+a lot of practice questions, but these are unimpressive and only really address
+writing queries, when there&rsquo;s a lot more to effective databaseing than just that." />
+    <meta name="author" content="Stories and Cheat-Sheets" />
+    
+
+    
+    
+    
+    
+    
+    
+    <link rel="preload stylesheet" as="style" href="http://localhost:1313/main.min.css" />
+
+    
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/cm-chessboard@5.2.4/assets/styles/cm-chessboard.css"
+    />
+
+    
+    
+    
+    
+    
+    <link rel="preload" as="image" href="http://localhost:1313/theme.png" />
+
+    
+    
+    
+    
+    
+
+    
+    
+    <link rel="preload" as="image" href="http://localhost:1313/github.svg" />
+    
+    <link rel="preload" as="image" href="http://localhost:1313/linkedin.svg" />
+    
+    
+
+    
+    
+    <script
+        defer
+        src="http://localhost:1313/highlight.min.js"
+        onload="hljs.initHighlightingOnLoad();"
+    ></script>
+    
+
+    
+    
+    
+
+    
+    <link
+        rel="icon"
+        href="http://localhost:1313/favicon.ico"
+    />
+    <link
+        rel="apple-touch-icon"
+        href="http://localhost:1313/apple-touch-icon.png"
+    />
+
+    
+    <meta name="generator" content="Hugo 0.139.4">
+
+    
+    
+    
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-[--w] px-8 lg:justify-center">
+    <div class="relative z-50 ltr:mr-auto rtl:ml-auto flex items-center">
+        <a
+            class="-translate-y-[1px] text-2xl font-medium"
+            href="http://localhost:1313/"
+            >Stories and Cheat-Sheets</a
+        >
+        
+        
+    </div>
+
+    <div
+        class="btn-menu relative z-50 ltr:-mr-8 rtl:-ml-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+        role="button"
+        aria-label="Menu"
+    ></div>
+
+    
+
+    <script>
+        
+        const htmlClass = document.documentElement.classList;
+        setTimeout(() => {
+            htmlClass.remove("not-ready");
+        }, 10);
+
+        
+        const btnMenu = document.querySelector(".btn-menu");
+        btnMenu.addEventListener("click", () => {
+            htmlClass.toggle("open");
+        });
+
+        
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        const lightBg = "#faf8f1".replace(/"/g, "");
+        const setDark = (isDark) => {
+            metaTheme.setAttribute("content", isDark ? "#000" : lightBg);
+            htmlClass[isDark ? "add" : "remove"]("dark");
+            localStorage.setItem("dark", isDark);
+        };
+
+        
+        const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+        if (htmlClass.contains("dark")) {
+            setDark(true);
+        } else {
+            const darkVal = localStorage.getItem("dark");
+            setDark(darkVal ? darkVal === "true" : darkScheme.matches);
+        }
+
+        
+        darkScheme.addEventListener("change", (event) => {
+            setDark(event.matches);
+        });
+
+        
+        const btnDark = document.querySelector(".btn-dark");
+        btnDark.addEventListener("click", () => {
+            setDark(localStorage.getItem("dark") !== "true");
+        });
+    </script>
+
+    <div
+        class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+    >
+        
+        
+        <nav
+            class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-10 rtl:space-x-reverse"
+        >
+            
+            <a
+                class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+                href="/about/"
+                >About</a
+            >
+            
+            <a
+                class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+                href="/contact/"
+                >Contact</a
+            >
+            
+        </nav>
+        
+
+        
+        <nav
+            class="mt-12 flex justify-center space-x-10 rtl:space-x-reverse dark:invert ltr:lg:ml-14 rtl:lg:mr-14 lg:mt-0 lg:items-center"
+        >
+            
+            <a
+                class="h-7 w-7 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+                style="--url: url(./github.svg)"
+                href="https://github.com/hlud6646"
+                target="_blank"
+                rel="me"
+            >
+                github
+            </a>
+            
+            <a
+                class="h-7 w-7 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+                style="--url: url(./linkedin.svg)"
+                href="https://linkedin.com/in/hugoludemann"
+                target="_blank"
+                rel="me"
+            >
+                linkedin
+            </a>
+            
+        </nav>
+        
+    </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100vh-9rem)] max-w-[--w] px-8 pb-16 pt-14 dark:prose-invert"
+    >
+      
+
+<article>
+    <header class="mb-14">
+        <h1 class="!my-0 pb-2.5">Store Simulation</h1>
+
+        
+        <div class="text-xs antialiased opacity-60">
+            
+            <time>Jan 31, 2025</time>
+            
+            
+            
+            
+        </div>
+        
+    </header>
+
+    
+    
+
+    <section><p>When you&rsquo;re early career and smart but not a genius it can be hard to find
+motivated projects either to learn and to demonstrate past learning.  In my case
+I wanted to demonstrate that I have a reasonable level of ability in managing
+and using relational databases. Sure I&rsquo;ve done
+a lot of practice questions, but these are unimpressive and only really address
+writing queries, when there&rsquo;s a lot more to effective databaseing than just that.</p>
+<p>So I decided to create a database for a large fictional store that would have
+many suppliers, products, customers, employees etc. It could have ended with some
+<code>create table...</code> statements but I thought it would be more fun to mimic some
+data generation processes. So there is a python process that creates fake customers
+and inserts them into the database via an object relational mapping, a scala
+program that invents products and hooks into java database connectivity and so on.
+This extended the project into a comparison of database connectivity patterns
+and build tools.</p>
+<p>Again, it could have ended there, with everything running locally and with a
+big database to play with but it seemed like a good opportunity to learn another
+ubiquitous tool, namely docker. So each data generation process is containerized,
+as is the database itself, ready to be deployed nowhere :)</p>
+<h2 id="the-database">The Database</h2>
+<p>This is a no frills postgresql database, with tables like</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> product
+</span></span><span style="display:flex;"><span>(
+</span></span><span style="display:flex;"><span>    id         serial <span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span>,
+</span></span><span style="display:flex;"><span>    name       text    <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    material   text,
+</span></span><span style="display:flex;"><span>    color      text,
+</span></span><span style="display:flex;"><span>    department text,
+</span></span><span style="display:flex;"><span>    inventory  integer <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>and</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> supplier
+</span></span><span style="display:flex;"><span>(
+</span></span><span style="display:flex;"><span>    id      serial <span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span>,
+</span></span><span style="display:flex;"><span>    name    text <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    address text,
+</span></span><span style="display:flex;"><span>    phone   text <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    email   text <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constraint</span> check_email <span style="color:#66d9ef">check</span> ((email <span style="color:#f92672">~~</span> <span style="color:#e6db74">&#39;%@%&#39;</span>::text))
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> supplier_products
+</span></span><span style="display:flex;"><span>(
+</span></span><span style="display:flex;"><span>    supplier_id integer <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span> <span style="color:#66d9ef">references</span> supplier (id),
+</span></span><span style="display:flex;"><span>    product_id  integer <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span> <span style="color:#66d9ef">references</span> product (id),
+</span></span><span style="display:flex;"><span>    price       bigint  <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constraint</span> check_price <span style="color:#66d9ef">check</span> ((price <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)),
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span> (supplier_id, product_id)
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>I am pleased to announce that these three tables alone contain
+<strong>artificial and composite primary keys</strong>, <strong>foreign keys</strong>, a
+<strong>many-to-one relationship</strong> and
+some <strong>data integrity constraints</strong>.</p>
+<h3 id="free-gift">Free Gift!</h3>
+<p>Marketing decided it would be nice to send new customers a randomly
+chosen welcome gift as soon as they create their account. This means
+that we (as database administrators) need a trigger that executes
+after a row is inserted into the customers table. This looks like</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">function</span> send_welcome_product() <span style="color:#66d9ef">returns</span> <span style="color:#66d9ef">trigger</span> <span style="color:#66d9ef">as</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">$</span>welcome_product$
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">declare</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">-- This language (plpgsql) requires you to declare your variables
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">-- and their types before you can use them in the funcion body.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    product_id        integer;
+</span></span><span style="display:flex;"><span>    purchase_order_id integer;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">-- Create a new order for this customer, keeping the order_id.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> purchase_order(customer, address)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">values</span> (<span style="color:#66d9ef">NEW</span>.id, <span style="color:#66d9ef">NEW</span>.primary_address)
+</span></span><span style="display:flex;"><span>    returning id <span style="color:#66d9ef">into</span> purchase_order_id;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">-- Select a random product id from products with non-zero inventory.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">select</span> id
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">into</span> product_id
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">from</span> product
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">where</span> product.inventory <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">order</span> <span style="color:#66d9ef">by</span> random()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">-- Decrement the inventory of that product.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">update</span> product <span style="color:#66d9ef">set</span> inventory <span style="color:#f92672">=</span> inventory <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">where</span> id <span style="color:#f92672">=</span> product_id;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">-- Add this product to the new order.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> purchase_order_products(purchase_order, product, quantity)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">values</span> (purchase_order_id, product_id, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">-- Log this on the console. 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    raise notice <span style="color:#e6db74">&#39;New customer: %&#39;</span>, <span style="color:#66d9ef">NEW</span>.id;
+</span></span><span style="display:flex;"><span>    raise notice <span style="color:#e6db74">&#39;Created order %&#39;</span>, purchase_order_id;
+</span></span><span style="display:flex;"><span>    raise notice <span style="color:#e6db74">&#39;Added product % to order&#39;</span>, product_id;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">-- Return is ignored since this is an AFTER trigger, but the editor wants one.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">NULL</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">$</span>welcome_product$ <span style="color:#66d9ef">language</span> plpgsql;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- The &#39;trigger&#39; defines exactly when the above function should be executed.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">trigger</span> welcome_product
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">after</span> <span style="color:#66d9ef">insert</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">on</span> customer
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">each</span> <span style="color:#66d9ef">row</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">execute</span> <span style="color:#66d9ef">function</span> send_welcome_product();
+</span></span></code></pre></div><p>To me the syntax of plpgsql functions and the &lsquo;create trigger&rsquo; command are
+very simple once they&rsquo;re complete, but not necessarily so when you&rsquo;re actually
+writing them.</p>
+<h2 id="data-generation">Data Generation</h2>
+<p>To populate the database, a haskell process invents suppliers, a python process
+invents products etc. Here is a table of the various components:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Component</th>
+          <th>Language</th>
+          <th>DB Connector</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Suppliers</td>
+          <td>Haskell</td>
+          <td>postgresql-simple</td>
+      </tr>
+      <tr>
+          <td>Products</td>
+          <td>Scala</td>
+          <td>JDBC</td>
+      </tr>
+      <tr>
+          <td>Customers</td>
+          <td>Python</td>
+          <td>SQLAlchemy</td>
+      </tr>
+      <tr>
+          <td>Orders</td>
+          <td>Elixir</td>
+          <td>Ecto</td>
+      </tr>
+  </tbody>
+</table>
+<!-- |           |         |                   | -->
+<!-- |           |         |                   | -->
+<!-- |           |         |                   | -->
+<p>I should point out that this is a totally kooky way to populate a database
+with test data. There&rsquo;s no reason apart from experimentation and learning
+to use so many different technologies to achieve quite a simple task.
+The following section will briefly describe each of these.</p>
+<h3 id="customers">Customers</h3>
+<p>This is a python project using the <code>poetry</code> packaging and dependency management
+tool. In the same category as <code>venv</code> (which it wraps), <code>conda</code> etc this tool
+tries to make python projects easier to share.</p>
+<p>For a small project like this the use of a full object relational mapping (ORM)
+is overkill, but it&rsquo;s a common way to interact with a database so I wanted to
+explore it.  This style of database interaction requires you to declare an exact
+mapping from the rows in a table to a python class that can represent these rows.
+For a simple database you can write these mappings by hand. For larger projects
+you would probably consider a tool that automatically writes these modules.
+I have the feeling that this may not be the most pleasant process, especially
+for real databases with lots of relations, constraints etc. Anyway in this case
+the customers model looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> String
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sqlalchemy.orm <span style="color:#f92672">import</span> DeclarativeBase
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sqlalchemy.orm <span style="color:#f92672">import</span> Mapped
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sqlalchemy.orm <span style="color:#f92672">import</span> mapped_column
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span>(DeclarativeBase):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Customer</span>(Base):
+</span></span><span style="display:flex;"><span>    __tablename__                <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;customer&#34;</span>
+</span></span><span style="display:flex;"><span>    id: Mapped[int]              <span style="color:#f92672">=</span> mapped_column(primary_key<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    name: Mapped[str]            <span style="color:#f92672">=</span> mapped_column(String())
+</span></span><span style="display:flex;"><span>    email: Mapped[str]           <span style="color:#f92672">=</span> mapped_column(String())
+</span></span><span style="display:flex;"><span>    primary_address: Mapped[str] <span style="color:#f92672">=</span> mapped_column(String())
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __repr__(self) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Customer(id:</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>id<span style="color:#e6db74">}</span><span style="color:#e6db74">, name:</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">, email:</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>email<span style="color:#e6db74">}</span><span style="color:#e6db74">)&#34;</span>
+</span></span></code></pre></div><p>which is all pretty self explanatory. Once you get this out of the way
+the syntax for interacting with the database is simple:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">with</span> Session(engine) <span style="color:#66d9ef">as</span> session:
+</span></span><span style="display:flex;"><span>    customer <span style="color:#f92672">=</span> Customer(name<span style="color:#f92672">=</span>faker<span style="color:#f92672">.</span>name(),
+</span></span><span style="display:flex;"><span>                        email<span style="color:#f92672">=</span>faker<span style="color:#f92672">.</span>ascii_email(),
+</span></span><span style="display:flex;"><span>                        primary_address<span style="color:#f92672">=</span>faker<span style="color:#f92672">.</span>address())
+</span></span><span style="display:flex;"><span>    session<span style="color:#f92672">.</span>add(customer)
+</span></span><span style="display:flex;"><span>    session<span style="color:#f92672">.</span>commit()
+</span></span></code></pre></div><p>Running this in a loop will generate as many fake customers as you like.</p>
+<h3 id="products">Products</h3>
+<p>Next we have a scala prject build with <code>sbt</code> that invents products for the
+store. We start with a model for a product and a method that creates random
+ones, like a &lsquo;Gorgeous Rubber Table&rsquo; in &lsquo;mint green&rsquo;, which belongs in the
+&lsquo;Clothing, Health &amp; Industrial&rsquo; department.</p>
+<p>This is nothing fancy, but nice in scala:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> com.github.javafaker.<span style="color:#f92672">{</span><span style="color:#a6e22e">Faker</span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> java.util.Locale
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">case</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Product</span><span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>    name<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>    material<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>    color<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>    department<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">String</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>    inventory<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Int</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">Product</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> faker <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Faker</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Locale</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;en-AU&#34;</span><span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> rand <span style="color:#66d9ef">=</span> <span style="color:#66d9ef">new</span> util<span style="color:#f92672">.</span><span style="color:#a6e22e">Random</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> random<span style="color:#f92672">()</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Product</span><span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>      faker<span style="color:#f92672">.</span>commerce<span style="color:#f92672">().</span>productName<span style="color:#f92672">(),</span>
+</span></span><span style="display:flex;"><span>      faker<span style="color:#f92672">.</span>commerce<span style="color:#f92672">().</span>material<span style="color:#f92672">(),</span>
+</span></span><span style="display:flex;"><span>      faker<span style="color:#f92672">.</span>commerce<span style="color:#f92672">().</span>color<span style="color:#f92672">(),</span>
+</span></span><span style="display:flex;"><span>      faker<span style="color:#f92672">.</span>commerce<span style="color:#f92672">().</span>department<span style="color:#f92672">(),</span>
+</span></span><span style="display:flex;"><span>      rand<span style="color:#f92672">.</span>nextInt<span style="color:#f92672">(</span><span style="color:#ae81ff">1000</span><span style="color:#f92672">)</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>I chose to use a basic JDBC connection for this part. This is because I hadn&rsquo;t
+used the JDBC before, and I feel like you should start with basic tools before
+moving on to things that &lsquo;improve&rsquo; on them. Also the alternatives (Slick etc)
+are quite complicated.</p>
+<p>The JDBC is a fairly low level interface, so you essentially write the skeleton
+of an SQL query, then take extraordinary care in filling in the parts that change.
+Here is a method that will do just that:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> writeNewProduct<span style="color:#f92672">(</span>connection<span style="color:#66d9ef">:</span> <span style="color:#66d9ef">Connection</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">=</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> statement <span style="color:#66d9ef">=</span> connection<span style="color:#f92672">.</span>createStatement<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> sql <span style="color:#66d9ef">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;INSERT INTO product (name, material, color, department, inventory) VALUES (?, ?, ?, ?, ?)&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> preparedStatement <span style="color:#66d9ef">=</span> connection<span style="color:#f92672">.</span>prepareStatement<span style="color:#f92672">(</span>sql<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> product <span style="color:#66d9ef">=</span> <span style="color:#a6e22e">Product</span><span style="color:#f92672">.</span>random<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>    preparedStatement<span style="color:#f92672">.</span>setString<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> product<span style="color:#f92672">.</span>name<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    preparedStatement<span style="color:#f92672">.</span>setString<span style="color:#f92672">(</span><span style="color:#ae81ff">2</span><span style="color:#f92672">,</span> product<span style="color:#f92672">.</span>material<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    preparedStatement<span style="color:#f92672">.</span>setString<span style="color:#f92672">(</span><span style="color:#ae81ff">3</span><span style="color:#f92672">,</span> product<span style="color:#f92672">.</span>color<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    preparedStatement<span style="color:#f92672">.</span>setString<span style="color:#f92672">(</span><span style="color:#ae81ff">4</span><span style="color:#f92672">,</span> product<span style="color:#f92672">.</span>department<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    preparedStatement<span style="color:#f92672">.</span>setInt<span style="color:#f92672">(</span><span style="color:#ae81ff">5</span><span style="color:#f92672">,</span> product<span style="color:#f92672">.</span>inventory<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> rowsInserted <span style="color:#66d9ef">=</span> preparedStatement<span style="color:#f92672">.</span>executeUpdate<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>rowsInserted <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      logger<span style="color:#f92672">.</span>info<span style="color:#f92672">(</span><span style="color:#e6db74">s&#34;New product: </span><span style="color:#e6db74">$product</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>For a real project I think I would look at more sophisticated solutions, but it&rsquo;s nice
+to know that JBDC is always there for something quick.</p>
+<h3 id="suppliers">Suppliers</h3>
+<p>Inventing a new supplier means</p>
+<ol>
+<li>inventing the supplier itself;</li>
+<li>creating some rows in the &lsquo;supplier supplies product&rsquo; relation.</li>
+</ol>
+<p>In Haskell, the way to read or write a row to a table is to create a data-type corresponding
+to that table, and then to implement the <code>FromRow</code> or <code>ToRow</code> typeclass respectively.
+In our case, we have a very natural supplier type:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">Supplier</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">Supplier</span>
+</span></span><span style="display:flex;"><span>  { supplier_name <span style="color:#f92672">::</span> <span style="color:#66d9ef">Text</span>,
+</span></span><span style="display:flex;"><span>    address       <span style="color:#f92672">::</span> <span style="color:#66d9ef">Text</span>,
+</span></span><span style="display:flex;"><span>    phone         <span style="color:#f92672">::</span> <span style="color:#66d9ef">Text</span>,
+</span></span><span style="display:flex;"><span>    email         <span style="color:#f92672">::</span> <span style="color:#66d9ef">Text</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>and if we want to be able to write one to the database we must specify how to transform it
+to a database row:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#66d9ef">instance</span> <span style="color:#66d9ef">ToRow</span> <span style="color:#66d9ef">Supplier</span> <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>  toRow <span style="color:#66d9ef">Supplier</span> {<span style="color:#f92672">..</span>} <span style="color:#f92672">=</span> [toField supplier_name, toField address, toField phone, toField email]
+</span></span></code></pre></div><p>TODO: explain this a bit.</p>
+<p>This function will write a supplier to the database and then
+return the autogenerated ID of the new row:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">writeNewSupplier</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Connection</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">IO</span> <span style="color:#66d9ef">Int</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">writeNewSupplier</span> conn <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">-- This is a random new supplier. </span>
+</span></span><span style="display:flex;"><span>  supplier <span style="color:#f92672">&lt;-</span> generateNonDeterministic fakeSupplier
+</span></span><span style="display:flex;"><span>  [<span style="color:#66d9ef">Only</span> id] <span style="color:#f92672">&lt;-</span>
+</span></span><span style="display:flex;"><span>    query
+</span></span><span style="display:flex;"><span>      conn
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;INSERT INTO supplier (name, address, phone, email) </span><span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff">      \</span><span style="color:#e6db74"> VALUES (?, ?, ?, ?) </span><span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff">      \</span><span style="color:#e6db74"> RETURNING id&#34;</span>
+</span></span><span style="display:flex;"><span>      supplier
+</span></span><span style="display:flex;"><span>  return id
+</span></span></code></pre></div><p>As always things look a little different in Haskell, but doing the work early (implementing
+the typeclasses above) lets you use a pretty compact syntax when its time to actually do IO.</p>
+<h3 id="orders">Orders</h3>
+</section>
+
+    
+    
+    
+    
+    <nav
+        class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg !leading-[1.2] *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+    >
+        
+        
+        <a
+            class="ltr:ml-auto rtl:mr-auto justify-end pl-3"
+            href="http://localhost:1313/posts/elixir/"
+            ><span>Elixir</span
+            ><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+        >
+        
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+
+    
+
+
+    
+</article>
+
+
+    </main>
+
+    <footer
+    class="mx-auto flex h-[4.5rem] max-w-[--w] items-center px-8 text-xs uppercase tracking-wider opacity-60"
+>
+    <div class="mr-auto">
+         &copy; 2025
+        <a class="link" href="http://localhost:1313/">Stories and Cheat-Sheets</a>
+        
+    </div>
+    
+</footer>
+
+  </body>
+</html>
