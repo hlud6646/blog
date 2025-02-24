@@ -34,7 +34,7 @@ def load_data(noise_level):
     df['class'] = (df['class'] == 'e').astype(int)
 
     if noise_level > 0:
-        # Polute the data to make the problem harder.
+        # Pollute the data to make the problem harder.
         mask = np.random.random(len(df)) < noise_level
         df.loc[mask, 'class'] = 1 - df.loc[mask, 'class']
 
@@ -57,7 +57,7 @@ the models that we are building. A few of the features are listed below.
 We define a reusable pipeline generator that takes the data and a base classifier and returns
 a trainable object that also encodes the input features.
 We can use this pipeline to show that the original dataset is too easy.
-If we train an untuned decision tree we can achive perfect accuracy on unseen data:
+If we train an untuned decision tree we can achieve perfect accuracy on unseen data:
 
 
 ```python
