@@ -1,4 +1,4 @@
-baseURL = 'https://hlud6646.surge.sh/'
+baseURL = 'https://blog.hlud.xyz/'
 languageCode = 'en-us'
 title = 'Stories and Cheat-Sheets'
 theme = 'paper'
