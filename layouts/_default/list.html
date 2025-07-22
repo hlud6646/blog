@@ -5,6 +5,18 @@
 <h1 class="mb-14">#{{ .Title }}</h1>
 {{ end }}
 
+{{ if eq .Type "stats" }}
+<div class="mb-14">
+    <p>I have found that the only way to even begin to understand a new concept in statistics is to 
+        play with simple simulations. These are often pretty easy to knock up in Python or Julia and 
+        give you a good feel for lots of fundamental concepts.
+    </p>
+</div>
+<hr class="my-6 border-t border-gray-300 dark:border-gray-700" />
+
+{{ end }}
+
+
 <!-- $pages -->
 {{ $pages := union .RegularPages .Sections }}<!---->
 {{ if .IsHome }}<!---->
