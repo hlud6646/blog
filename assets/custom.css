@@ -1,0 +1,8 @@
+
+:root {
+  --w: calc(800px + 32px * 2);
+}
+
+body {
+  background-color: #fff5e6;
+}

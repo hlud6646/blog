@@ -6,6 +6,8 @@ draft = false
 tags = ["machine-learning", "neural-networks", "python"]
 +++
 
+Source: [https://github.com/hlud6646/data-practice/tree/main/04-Neural-Networks](https://github.com/hlud6646/data-practice/tree/main/04-Neural-Networks)
+
 I'm filling in some gaps from my masters and one of the side-quests
 that I never completed was coding up a neural network from scratch. 
 These models have the reputation of being a 'black box' where

@@ -5,7 +5,12 @@ theme = 'paper'
 
 [markup]
     [markup.goldmark]
-      renderer.unsafe = true
+        [markup.goldmark.renderer]
+            unsafe = true
+    [markup.highlight]
+        style = "github-dark"  # or any other theme name
+        lineNos = false
+        lineNumbersInTable = false
 
 
 [params]

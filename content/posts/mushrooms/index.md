@@ -9,7 +9,7 @@ tags = ["data-science", "error-rates"]
 
 **Disclaimer: Do NOT use anything you find in here to help you choose a mushroom!**
 
-<!-- *Source code: ???* -->
+Source: [https://github.com/hlud6646/data-practice/tree/main/07-Mushrooms](https://github.com/hlud6646/data-practice/tree/main/07-Mushrooms)
 
 This notebook explores the tradeoff between type 1 (false positive) and type 2 (false negative) errors.
 In this example, we are attempting to determine whether a given mushroom is edible. In this context a *false positive* is a deadly mushroom classified as edible (BAD!) and a false negative is is an edible mushroom classified as poisonous (a shame, but ok).
